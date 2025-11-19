@@ -1,8 +1,10 @@
+package classes;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/// A department is the "büro", which acts as a screen
-/// in the game. It can hold multiple developers, and
+/// A classes.department is the "büro", which acts as a screen
+/// in the classes.game. It can hold multiple developers, and
 /// can have permanent upgrades.
 public class department {
 
@@ -12,8 +14,8 @@ public class department {
     private int numberOfWorkplaces;
 
     /***
-     * Default constructor for department
-     * @param name  //name of department for UI-Display
+     * Default constructor for classes.department
+     * @param name  //name of classes.department for UI-Display
      * @param ID    //Unique identifier
      */
     public department(String name, int ID) {

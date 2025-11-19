@@ -1,6 +1,7 @@
+package classes;
 
-/// Represents the current game
-/// offers different options for game logic,
+/// Represents the current classes.game
+/// offers different options for classes.game logic,
 /// and tracks progress
 public class game {
 

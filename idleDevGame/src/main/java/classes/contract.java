@@ -1,5 +1,6 @@
+package classes;
 
-/// A contract is a game objective that can be completed
+/// A classes.contract is a classes.game objective that can be completed
 /// to earn capital
 public class contract {
 
@@ -16,17 +17,17 @@ public class contract {
     private float rngLowerBound = 1.5f;
 
     /***
-     * Default constructor of contract, generates semi-random
+     * Default constructor of classes.contract, generates semi-random
      * name and description and successes/payout based on difficulty
-     * @param contractNumber        //unique identifier for contract
-     * @param contractDifficulty    //difficulty of contract
+     * @param contractNumber        //unique identifier for classes.contract
+     * @param contractDifficulty    //difficulty of classes.contract
      */
     public contract(int contractNumber, int contractDifficulty) {
         this.contractNumber = contractNumber;
         this.contractDifficulty = contractDifficulty;
         this.numberOfSuccessesAchieved = 0;
 
-        //todo: generate contract values semi-randomly
+        //todo: generate classes.contract values semi-randomly
 
         generateContract();
 
@@ -37,7 +38,7 @@ public class contract {
     public boolean addSuccesses(){
 
         //todo: implement
-        //return true as soon as contract is completed
+        //return true as soon as classes.contract is completed
 
         return false;
     }

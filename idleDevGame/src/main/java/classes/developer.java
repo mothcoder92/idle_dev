@@ -1,17 +1,19 @@
+package classes;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/// Representing the base class of a developer,
+/// Representing the base class of a classes.developer,
 /// which can be hired and upgraded as part of
-/// the core game mechanic
+/// the core classes.game mechanic
 public class developer {
 
     private String name;
     private int ID;
-    private List<attribute> attributes;
+    private List<attribute> skills;
 
     /***
-     * A developer is the bass class for a
+     * A classes.developer is the bass class for a
      * worker in the company
      * @param name  //name for UI-Display
      * @param ID    //Unique identifier
@@ -19,15 +21,15 @@ public class developer {
     public developer(String name, int ID) {
         this.name = name;
         this.ID = ID;
-        this.attributes = new ArrayList<>();
-        attributes.add(new attribute(0, attribute.attributes.CodingSpeed));
-        attributes.add(new attribute(0, attribute.attributes.ErrorRate));
+        this.skills = new ArrayList<>();
+        skills.add(new attribute(0, attribute.attr.CodingSpeed));
+        skills.add(new attribute(0, attribute.attr.ErrorRate));
     }
 
     //implement here
 
 
-    public boolean upgradeAttribute(attribute.attributes a) {
+    public boolean upgradeAttribute(attribute.attr a) {
         //todo: implement
 
         return false;

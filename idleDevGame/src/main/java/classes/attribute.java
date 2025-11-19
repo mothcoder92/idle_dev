@@ -1,8 +1,10 @@
+package classes;
+
 /// Attribute represents abilities of developers,
-/// that can be improved as a core game mechanic
+/// that can be improved as a core classes.game mechanic
 public class attribute {
 
-    public enum attributes{
+    public enum attr{
         CodingSpeed,
         ErrorRate
     }
@@ -10,10 +12,10 @@ public class attribute {
 
     /***
      * Default constructor
-     * @param rank  //The rank of an attribute
-     * @param a     //the type of attribute
+     * @param rank  //The rank of an classes.attribute
+     * @param a     //the type of classes.attribute
      */
-    public attribute(int rank, attributes a) {
+    public attribute(int rank, attr a) {
         Rank = rank;
     }
 
