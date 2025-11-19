@@ -3,7 +3,7 @@ package at.ac.hcw.idledevgame;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class GameController {
     @FXML
     private Label welcomeText;
 

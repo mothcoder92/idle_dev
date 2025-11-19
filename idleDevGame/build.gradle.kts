@@ -27,7 +27,7 @@ tasks.withType<JavaCompile> {
 
 application {
     mainModule.set("at.ac.hcw.idledevgame")
-    mainClass.set("at.ac.hcw.idledevgame.HelloApplication")
+    mainClass.set("at.ac.hcw.idledevgame.GameApplication")
 
     //Remove warnings concerning deprecated classes as of vs. 22
     applicationDefaultJvmArgs = listOf(
