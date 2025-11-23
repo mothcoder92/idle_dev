@@ -1,6 +1,7 @@
 package classes;
 
 //Johannes is working on this, glaubt er....
+// DAS ERGIBT EINEN KONFLIKT :o
 
 /// Represents the current classes.game
 /// offers different options for classes.game logic,
