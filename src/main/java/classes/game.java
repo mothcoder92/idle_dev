@@ -29,6 +29,7 @@ public class game {
 
     //region development variables
     public List<Exception> errors = new ArrayList<>();
+    public List<developer>  developers = new ArrayList<>();
     //endregion
 
     /***
@@ -57,7 +58,7 @@ public class game {
         commands.add("5. Display current company stats");
         commands.add("6. Display full game log");
         commands.add("7. Exit game");
-        commands.add("#########################################");
+        commands.add("#########################################\n");
         commands.add("Enter a command: ");
 
         boolean consoleGame = true;
@@ -78,11 +79,26 @@ public class game {
                         progressContract();
                         break;
                         case "3":
-                            this.firstOffice.addDeveloper(new developer("Worker "+ counter, rnd));
+                            this.developers.add(hireDeveloper());
+                            System.out.println("Developer has been successfully hired!");
                             break;
                             case "4":
-                                this.firstOffice = new department(this.companyName, rnd+2);
+                                resetGame();
+                                System.out.println("Game has been reset.");
                                 break;
+                                case "5":
+                                    printCurrentGameStats();
+                                    break;
+                                    case "6":
+                                        printGameLog();
+                                        break;
+                                        case "7":
+                                            System.exit(0);
+                default:
+                    System.out.println("-------------");
+                    System.out.println("Invalid input");
+                    System.out.println("-------------\n");
+
             }
 
         }
@@ -175,6 +191,31 @@ public class game {
 
     }
 
+    public developer hireDeveloper(){
+        int rnd = new Random().nextInt(0,4);
+        int rnd2 = new Random().nextInt(0,4);
+        int rnd3 = new Random().nextInt(100,500);
+        List<String> firstNames = new ArrayList<>();
+        firstNames.add("Johnny");
+        firstNames.add("Bill");
+        firstNames.add("Julia");
+        firstNames.add("Mary");
+        List<String> lastNames = new ArrayList<>();
+        lastNames.add("Forger");
+        lastNames.add("Lichan");
+        lastNames.add("Schmidt");
+        lastNames.add("Oshab");
+        this.gameLog.add("Hired "+ firstNames.get(rnd)+" "+lastNames.get(rnd));
+        return new developer(firstNames.get(rnd)+ " " + lastNames.get(rnd2), rnd3);
+    }
+
+    private void resetGame(){
+        this.currentCapital = startingCapital;
+        this.currentDay = 1;
+        this.gameLog.clear();
+        this.developers.clear();
+    }
+
     private void logStartingValues(){
         this.gameLog.add("New game started as "+this.companyName);
         this.gameLog.add("Starting funds: "+this.startingCapital);
@@ -192,6 +233,7 @@ public class game {
 
     public void printGameLog(){
         logEndingValues();
+        System.out.println("-------------------------------------------------");
         if(errors.isEmpty()){
             for(String log : this.gameLog){
                 System.out.println(log);
@@ -201,7 +243,19 @@ public class game {
                 System.out.println(error.getMessage());
             }
         }
+        System.out.println("-------------------------------------------------");
+    }
 
+    public void printCurrentGameStats(){
+        System.out.println("#############################################");
+        System.out.println("Currently Playing as: " + this.companyName);
+        System.out.println("Current Capital: " + this.currentCapital);
+        System.out.println("Current Day: " + this.currentDay);
+        System.out.println("Workforce: ");
+        for(developer dev: developers){
+            System.out.println(dev.toString()+", Salary: "+ dev.getID());
+        }
+        System.out.println("#############################################");
     }
     //endregion
 
