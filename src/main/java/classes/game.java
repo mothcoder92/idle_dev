@@ -46,6 +46,56 @@ public class game {
         this.startingCapital = startingCapital;
         logStartingValues();
     }
+    
+    public void consoleGame(){
+        //console based implementation
+        List<String> commands = new ArrayList<>();
+        commands.add("1. Progress to next day");
+        commands.add("2. Work on Contracts (success randomized)");
+        commands.add("3. Hire a developer");
+        commands.add("4. Reset game");
+        commands.add("5. Display current company stats");
+        commands.add("6. Display full game log");
+        commands.add("7. Exit game");
+        commands.add("#########################################");
+        commands.add("Enter a command: ");
+
+        boolean consoleGame = true;
+        int counter = 0;
+        int rnd = new Random().nextInt(50,200);
+
+        while(consoleGame){
+            for(String line: commands){
+                System.out.println(line);
+            }
+            String input = System.console().readLine();
+            switch (input){
+                case "1":
+                    this.nextDay();
+                    break;
+                    case "2":
+                        progressContract();
+                        progressContract();
+                        break;
+                        case "3":
+                            this.firstOffice.addDeveloper(new developer("Worker "+ counter, rnd));
+                            break;
+                            case "4":
+                                this.firstOffice = new department(this.companyName, rnd+2);
+                                break;
+            }
+
+        }
+
+
+
+
+        //todo: implement
+
+
+
+
+    }
 
 
     public boolean gameAutoRun(){
