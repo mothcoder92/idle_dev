@@ -1,5 +1,7 @@
 package classes;
 
+import at.ac.hcw.idledevgame.Launcher;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,14 +44,21 @@ public class game {
 
     }
 
+    /**
+     * Custom game constructor
+     * @param companyName //the chosen company name
+     * @param startingCapital   //the starting capital
+     */
     public game(String companyName, int startingCapital){
         this.companyName = companyName;
         this.startingCapital = startingCapital;
         logStartingValues();
     }
-    
+
+    /**
+     * A console-based implementation for testing purposes
+     */
     public void consoleGame(){
-        //console based implementation
         List<String> commands = new ArrayList<>();
         commands.add("1. Progress to next day");
         commands.add("2. Work on Contracts (success randomized)");
@@ -58,6 +67,7 @@ public class game {
         commands.add("5. Display current company stats");
         commands.add("6. Display full game log");
         commands.add("7. Exit game");
+        commands.add("8. Back to menu");
         commands.add("#########################################\n");
         commands.add("Enter a command: ");
 
@@ -66,9 +76,7 @@ public class game {
         int rnd = new Random().nextInt(50,200);
 
         while(consoleGame){
-            for(String line: commands){
-                System.out.println(line);
-            }
+            commands.forEach(System.out::println);
             String input = System.console().readLine();
             switch (input){
                 case "1":
@@ -94,26 +102,21 @@ public class game {
                                         break;
                                         case "7":
                                             System.exit(0);
+                                            case "8":
+                                                Launcher.main(new String[]{});
                 default:
                     System.out.println("-------------");
                     System.out.println("Invalid input");
                     System.out.println("-------------\n");
-
             }
-
         }
-
-
-
-
-        //todo: implement
-
-
-
-
     }
 
-
+    /**
+     * Auto-playthrough with randomized values
+     * for testing purposes
+     * @return  //false if errors occurred
+     */
     public boolean gameAutoRun(){
         try {
             this.running = true;
@@ -150,6 +153,11 @@ public class game {
 
 
     //region Game control
+
+    /**
+     * Pause the game for specified time
+     * @param milliseconds //time to pause
+     */
     private void wait(int milliseconds){
         try {
             logGameAction("Sleeping for "+milliseconds+" milliseconds");
@@ -184,7 +192,7 @@ public class game {
     }
 
     public void nextDay(){
-        this.currentDay++;
+        this.currentDay +=1;
         logGameAction("has started.");
 
         //todo: update variables
@@ -192,6 +200,8 @@ public class game {
     }
 
     public developer hireDeveloper(){
+
+        //todo: implementation based on real values
         int rnd = new Random().nextInt(0,4);
         int rnd2 = new Random().nextInt(0,4);
         int rnd3 = new Random().nextInt(100,500);
@@ -205,10 +215,13 @@ public class game {
         lastNames.add("Lichan");
         lastNames.add("Schmidt");
         lastNames.add("Oshab");
-        this.gameLog.add("Hired "+ firstNames.get(rnd)+" "+lastNames.get(rnd));
+        this.gameLog.add("Hired "+ firstNames.get(rnd)+" "+lastNames.get(rnd2));
         return new developer(firstNames.get(rnd)+ " " + lastNames.get(rnd2), rnd3);
     }
 
+    /**
+     * Resets the game to starting values
+     */
     private void resetGame(){
         this.currentCapital = startingCapital;
         this.currentDay = 1;
@@ -231,30 +244,30 @@ public class game {
         this.gameLog.add("Day " + currentDay + ": " + action);
     }
 
+    /**
+     * Print internal log of game-actions to console
+     */
     public void printGameLog(){
         logEndingValues();
         System.out.println("-------------------------------------------------");
         if(errors.isEmpty()){
-            for(String log : this.gameLog){
-                System.out.println(log);
-            }
+            gameLog.forEach(System.out::println);
         }else {
-            for(Exception error : errors){
-                System.out.println(error.getMessage());
-            }
+            errors.forEach(System.out::println);
         }
         System.out.println("-------------------------------------------------");
     }
 
+    /**
+     * Print current game stats to console
+     */
     public void printCurrentGameStats(){
         System.out.println("#############################################");
         System.out.println("Currently Playing as: " + this.companyName);
         System.out.println("Current Capital: " + this.currentCapital);
         System.out.println("Current Day: " + this.currentDay);
         System.out.println("Workforce: ");
-        for(developer dev: developers){
-            System.out.println(dev.toString()+", Salary: "+ dev.getID());
-        }
+        developers.forEach((d)-> System.out.println(d.getName()+", Salary: "+ d.getID()));
         System.out.println("#############################################");
     }
     //endregion

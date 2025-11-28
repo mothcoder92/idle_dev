@@ -2,7 +2,6 @@ package at.ac.hcw.idledevgame;
 
 import classes.game;
 import javafx.application.Application;
-
 import java.util.Scanner;
 
 public class Launcher {
