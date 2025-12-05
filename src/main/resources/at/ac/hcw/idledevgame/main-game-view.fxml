@@ -1,23 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Büro 1" />
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Exit Game" textAlignment="CENTER" />
-         </children>
-      </HBox>
-   </top>
-   <right>
-      <VBox minHeight="600.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Company_Name" />
-         </children>
-      </VBox>
-   </right>
-</BorderPane>
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0"
+      prefWidth="1000.0" styleClass="hbox" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.idledevgame.GameController">
+    <children>
+        <VBox prefHeight="562.0" prefWidth="846.0">
+            <children>
+                <GridPane prefHeight="568.0" prefWidth="845.0" stylesheets="@stylesheet.css">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="340.0" minHeight="0.0" prefHeight="247.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="319.0" minHeight="10.0" prefHeight="251.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <GridPane alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0"
+                                  stylesheets="@stylesheet.css" GridPane.rowIndex="1">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="142.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="90.66666412353516" minHeight="0.0" prefHeight="42.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="105.33333587646484" minHeight="10.0"
+                                                prefHeight="54.99999237060547" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <ImageView fitHeight="129.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true"
+                                           GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                    <image>
+                                        <Image url="@imgs/pic1.jpg"/>
+                                    </image>
+                                </ImageView>
+                                <Label text="Coding Speed" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                                       GridPane.valignment="CENTER"/>
+                                <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                                       GridPane.valignment="CENTER"/>
+                                <TextArea editable="false" prefHeight="57.0" prefWidth="96.0"
+                                          stylesheets="@stylesheet.css" text="Dominik&#10;150€/Tag&#10;Junior Dev"
+                                          GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                                          GridPane.valignment="CENTER"/>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0"
+                                      GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed" text="Upgrade">
+                                            <HBox.margin>
+                                                <Insets/>
+                                            </HBox.margin>
+                                        </Button>
+                                        <Label fx:id="levelCodingSpeed" text="Stufe 1">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0"
+                                      GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                                      GridPane.valignment="CENTER">
+                                    <children>
+                                        <Button mnemonicParsing="false" text="Upgrade" onAction="#upgradeQualityOfCode"/>
+                                        <Label fx:id="levelQualityOfCode" text="Stufe 1">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </GridPane>
+                    </children>
+                </GridPane>
+            </children>
+        </VBox>
+        <GridPane prefHeight="562.0" prefWidth="156.0" stylesheets="@stylesheet.css">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="130.66665649414062" minHeight="0.0" prefHeight="40.333335876464844"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="335.3333320617676" minHeight="10.0" prefHeight="326.66666412353516"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="59.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imgs/logo.jpg"/>
+                            </image>
+                        </ImageView>
+                        <TextField prefHeight="42.0" prefWidth="156.0" text="Macrosoft Inc.">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                </HBox>
+            </children>
+        </GridPane>
+    </children>
+</HBox>

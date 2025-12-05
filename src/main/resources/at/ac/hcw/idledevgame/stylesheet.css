@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "audiowide";
+    src: url("fonts/Audiowide-Regular.ttf");
+}
+
+.hbox {
+    -fx-background-color: #fef9ef;
+}
+
+.text-field {
+    -fx-background-color: inherit;
+    -fx-text-fill: #373f51;
+    -fx-font-family: 'audiowide';
+    -fx-font-size: 11px;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-family: 'audiowide';
+    -fx-font-size: 11px;
+}
+
+.text-area .content {
+    -fx-background-color: #fef9ef;
+
+}
+
+.button {
+    -fx-background-color: #17c3b2;
+    -fx-text-fill: #373f51;
+}
+
