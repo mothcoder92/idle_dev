@@ -24,6 +24,8 @@ public class Developer {
 
     public String getName() {return name;}
 
+
+    /// Gets the display name of a developer based on the rank
     public String getDevType() {
         if (rank < 10) return "Junior";
         else if (rank < 100) return "Senior";
@@ -46,9 +48,9 @@ public class Developer {
 
 
     public int calcOutput() {
-        int output = (getRank() * 10) + getCodingSpeed();
+        int output = (getRank() * 10) + getCodingSpeed(); // Get base output
         Random rnd = new Random();
-        float modifier = rnd.nextFloat(getSuccessRate(), 1.0f);
+        float modifier = rnd.nextFloat(getSuccessRate(), 1.0f); // Get true output based on successRate
         return (int) (output * modifier);
     }
 

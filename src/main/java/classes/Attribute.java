@@ -19,7 +19,7 @@ public class Attribute {
 
     public void upgradeRank() {
         rank++;
-        value += baseValue;
+        value += baseValue; // add baseValue to actual value everytime an attribute gets upgraded
     }
 
     public String getName() {return name;}
