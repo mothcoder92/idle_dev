@@ -10,7 +10,7 @@ public class department {
 
     private String name;
     private int ID;
-    private List<developer> developers;
+    private List<Developer> developers;
     private int numberOfWorkplaces;
 
     /***
@@ -22,12 +22,12 @@ public class department {
         this.name = name;
         this.ID = ID;
         this.numberOfWorkplaces = 2; //default
-        this.developers = new ArrayList<developer>();
+        this.developers = new ArrayList<Developer>();
     }
 
     //implement here
 
-    public boolean addDeveloper(developer developer){
+    public boolean addDeveloper(Developer developer){
         //todo: implement
         return false;
     }

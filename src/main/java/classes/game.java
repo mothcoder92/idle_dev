@@ -31,7 +31,7 @@ public class game {
 
     //region development variables
     public List<Exception> errors = new ArrayList<>();
-    public List<developer>  developers = new ArrayList<>();
+    public List<Developer>  developers = new ArrayList<>();
     //endregion
 
     /***
@@ -199,7 +199,7 @@ public class game {
 
     }
 
-    public developer hireDeveloper(){
+    public Developer hireDeveloper(){
 
         //todo: implementation based on real values
         int rnd = new Random().nextInt(0,4);
@@ -216,7 +216,7 @@ public class game {
         lastNames.add("Schmidt");
         lastNames.add("Oshab");
         this.gameLog.add("Hired "+ firstNames.get(rnd)+" "+lastNames.get(rnd2));
-        return new developer(firstNames.get(rnd)+ " " + lastNames.get(rnd2), rnd3);
+        return new Developer(firstNames.get(rnd)+ " " + lastNames.get(rnd2), rnd3);
     }
 
     /**
@@ -267,7 +267,7 @@ public class game {
         System.out.println("Current Capital: " + this.currentCapital);
         System.out.println("Current Day: " + this.currentDay);
         System.out.println("Workforce: ");
-        developers.forEach((d)-> System.out.println(d.getName()+", Salary: "+ d.getID()));
+        developers.forEach((d)-> System.out.println(d.getName()+", Salary: "+ d.getSalary()));
         System.out.println("#############################################");
     }
     //endregion
