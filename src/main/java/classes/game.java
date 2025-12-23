@@ -1,7 +1,6 @@
 package classes;
 
 import at.ac.hcw.idledevgame.Launcher;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,6 +38,7 @@ public class game {
     public game(){
         logStartingValues();
         //todo: implement
+        //contract Aufgabe1 = new contract()
 
 
     }
