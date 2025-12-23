@@ -6,24 +6,21 @@ public class Attribute {
 
     private final String name;
     private int rank;
-    private int value;
-    private final int baseValue = 100;
 
     public Attribute(String name, int rank) {
         this.name = name;
         this.rank = rank;
-        this.value = baseValue * rank;
     }
 
-    public int getRank() {return rank;}
-
-    public void upgradeRank() {
-        rank++;
-        value += baseValue; // add baseValue to actual value everytime an attribute gets upgraded
+    /**
+     * Call to upgrade attribute by one rank
+     */
+    public void upgradeAttribute() {
+        this.rank++;
     }
 
+    //Getters & Setters
     public String getName() {return name;}
-
-    public int getValue() {return value;}
+    public int getRank() {return rank;}
 
 }

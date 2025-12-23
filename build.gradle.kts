@@ -19,10 +19,16 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(24)
     }
+    sourceSets["main"].java.srcDirs("src/main/java")
+    sourceSets["main"].resources.srcDirs("src/main/resources")
 }
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
+}
+
+tasks.processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 application {

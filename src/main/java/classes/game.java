@@ -13,7 +13,6 @@ import java.util.Random;
  */
 public class game {
 
-
     //region local variables
     private String companyName = "Macrosoft Inc.";
     private int startingCapital = 5000;
@@ -87,7 +86,7 @@ public class game {
                         progressContract();
                         break;
                         case "3":
-                            this.developers.add(hireDeveloper());
+                            this.developers.add(hireDeveloper(5));
                             System.out.println("Developer has been successfully hired!");
                             break;
                             case "4":
@@ -169,7 +168,14 @@ public class game {
 
     public boolean progressContract (){
         try {
-            //todo: actual values added
+            int codeLinesWritten = 0;
+            for(Developer dev : this.developers){
+                codeLinesWritten += dev.work(currentContract.getContractDifficulty()); //todo: check contract difficulty
+            }
+
+            //todo: add success to contract
+            //todo: check if contract is finished
+
 
             //test values
             int rnd = new Random().nextInt(0,4);
@@ -199,24 +205,15 @@ public class game {
 
     }
 
-    public Developer hireDeveloper(){
-
-        //todo: implementation based on real values
-        int rnd = new Random().nextInt(0,4);
-        int rnd2 = new Random().nextInt(0,4);
-        int rnd3 = new Random().nextInt(100,500);
-        List<String> firstNames = new ArrayList<>();
-        firstNames.add("Johnny");
-        firstNames.add("Bill");
-        firstNames.add("Julia");
-        firstNames.add("Mary");
-        List<String> lastNames = new ArrayList<>();
-        lastNames.add("Forger");
-        lastNames.add("Lichan");
-        lastNames.add("Schmidt");
-        lastNames.add("Oshab");
-        this.gameLog.add("Hired "+ firstNames.get(rnd)+" "+lastNames.get(rnd2));
-        return new Developer(firstNames.get(rnd)+ " " + lastNames.get(rnd2), rnd3);
+    /**
+     * Hire a new developer with max ranks
+     * @param upperRankBound max possible ranks
+     * @return Developer object
+     */
+    public Developer hireDeveloper(int upperRankBound){
+        Developer dev = new Developer(upperRankBound);
+        this.gameLog.add("Hired "+dev.getName()+".");
+        return dev;
     }
 
     /**

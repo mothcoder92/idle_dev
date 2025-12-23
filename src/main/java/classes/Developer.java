@@ -1,67 +1,120 @@
 package classes;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 public class Developer {
 
+    //Properties
     private final String name;
-    private int rank;
+    private int level;
     Attribute codingSpeed;
     Attribute successRate;
     private int salary;
+    private List<String> devLog;
+
+    //Resources
+    private static final ResourceBundle rb = ResourceBundle.getBundle("at/ac/hcw/idledevgame/Names");
+    private static final Random rand = new Random();
 
 
-
-    public Developer(String name, int rank) {
-        this.name = name;
-        this.rank = rank;
-        this.codingSpeed = new Attribute("codingSpeed", generateSkillsRank());
-        this.successRate = new Attribute("successRate", generateSkillsRank());
-        this.salary = rank * 500;
+    /**
+     * Generate a new developer
+     * @param upperSkillBound ranks get generated between 1 and upperSkillBound
+     */
+    public Developer(int upperSkillBound) {
+        this.name = randomName();
+        this.devLog = new ArrayList<>();
+        this.codingSpeed = new Attribute("codingSpeed", rand.nextInt(1, upperSkillBound));
+        this.successRate = new Attribute("successRate", rand.nextInt(1, upperSkillBound));
+        updateDeveloper();
+        logDevAction(this.name +" was created.");
     }
 
+    /**
+     * Public visible method to re-calculate level and salary
+     */
+    public void updateDeveloper(){
+        calculateLevel();
+        calculateSalary();
+        logDevAction(this.name +"'s Level and Salary were updated.");
+    }
 
+    /**
+     * Public method to calculate successes
+     * @return number of successes
+     */
+    public int work(int difficulty){
+        int numberOfLinesWritten = this.codingSpeed.getRank() * 100;                    //Number of lines, e.g. Rank 5 = 500 Lines
+        float errorRate = 1.0f + ((this.successRate.getRank() - difficulty) / 10f);     //Multiplier based on difficulty e.g. 0.8 or 1.2
+        errorRate = Math.abs(errorRate);                                                //Ensure positive value
+        int result = Math.round((numberOfLinesWritten * errorRate));
+        logDevAction(this.name + " worked, and implemented " +result+ " lines.");
+        return result;
+    }
+
+    /**
+     * Log action
+     * @param log the thing that happened
+     */
+    private void logDevAction(String log){
+        this.devLog.add(log);
+    }
+
+    /**
+     * Initialize salary based on level
+     */
+    private void calculateSalary(){
+        this.salary = (int) (this.level * 500 * rand.nextFloat(0.8f,1.2f));
+    }
+
+    /**
+     * Initialize level as sum of ranks
+     */
+    private void calculateLevel() {
+        this.level = codingSpeed.getRank() +  successRate.getRank();
+    }
+
+    //Getters & Setters
     public String getName() {return name;}
-
-
-    /// Gets the display name of a developer based on the rank
-    public String getDevType() {
-        if (rank < 10) return "Junior";
-        else if (rank < 100) return "Senior";
-        else return "10x";
-    }
-
-    public int getCodingSpeed() {return codingSpeed.getValue();}
-
-    public float getSuccessRate() {return (float) successRate.getValue();}
-
-    public int getRank() {return rank;}
-
-    @Override
-    public String toString() {
-        return "Name: " + this.getName() + System.lineSeparator() +
-                "Rank: " + this.getRank() + System.lineSeparator() +
-                "Title: " + this.getDevType() + " Developer";
-
-    }
-
-
-    public int calcOutput() {
-        int output = (getRank() * 10) + getCodingSpeed(); // Get base output
-        Random rnd = new Random();
-        float modifier = rnd.nextFloat(getSuccessRate(), 1.0f); // Get true output based on successRate
-        return (int) (output * modifier);
-    }
-
-    public int generateSkillsRank() {
-        Random rnd = new Random();
-        return rnd.nextInt(1, getRank());
-    }
-
-    public void updateRank() {rank++;}
-
+    public int getCodingSpeed() {return codingSpeed.getRank();}
+    public float getSuccessRate() {return (float) successRate.getRank();}
+    public int getRank() {return level;}
     public int getSalary() {return salary;}
+
+
+    //region Helpers
+
+    /**
+     * Generate a random name from resource file
+     * @return String firstname + lastname
+     */
+    private static String randomName(){
+        String first = randomValue("first");
+        String last = randomValue("last");
+        return first + " " + last;
+    }
+
+    /**
+     * Return a random entry from resource file
+     * @param prefix /fist or last
+     * @return firstname or lastname
+     */
+    private static String randomValue(String prefix){
+        List<String> values = new ArrayList<>();
+
+        for(String key : rb.keySet()){
+            if(key.startsWith(prefix + ".")){
+                values.add(rb.getString(key));
+            }
+        }
+        return values.get(rand.nextInt(values.size()));
+    }
+
+    //endregion Helpers
+
 
 }
 
