@@ -7,13 +7,6 @@
     -fx-background-color: #fef9ef;
 }
 
-.text-field {
-    -fx-background-color: inherit;
-    -fx-text-fill: #373f51;
-    -fx-font-family: 'audiowide';
-    -fx-font-size: 18px;
-}
-
 .text-area {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
@@ -26,8 +19,34 @@
 
 }
 
-.button {
+.upgrade-btn {
     -fx-background-color: #17c3b2;
     -fx-text-fill: #373f51;
+}
+
+.finish-btn {
+    -fx-background-color: #ffcb77;
+    -fx-text-fill: #373f51;
+}
+
+.normal-txt {
+    -fx-background-color: inherit;
+    -fx-text-fill: #373f51;
+    -fx-font-size: 12px;
+    -fx-font-family: Arial;
+}
+
+.title-txt {
+    -fx-background-color: inherit;
+    -fx-text-fill: #373f51;
+    -fx-font-family: 'audiowide';
+    -fx-font-size: 18px;
+}
+
+.developer-txt {
+    -fx-background-color: inherit;
+    -fx-text-fill: #373f51;
+    -fx-font-family: 'audiowide';
+    -fx-font-size: 14px;
 }
 
