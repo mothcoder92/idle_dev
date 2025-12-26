@@ -10,7 +10,7 @@ import java.util.Random;
  * Offers methods to track and influence game state
  * @author Johannes Schagerl
  */
-public class game {
+public class Game {
 
     //region local variables
     private String companyName = "Macrosoft Inc.";
@@ -19,8 +19,8 @@ public class game {
     //endregion
 
     //region global variables
-    public department firstOffice;
-    public contract currentContract;
+    public Department firstOffice;
+    public Contract currentContract;
     public int currentCapital;
     public int currentDay;
     public List<String> gameLog = new ArrayList<>();
@@ -35,7 +35,7 @@ public class game {
     /***
      * Default constructor, with test-settings
      */
-    public game(){
+    public Game(){
         logStartingValues();
         //todo: implement
         //contract Aufgabe1 = new contract()
@@ -48,7 +48,7 @@ public class game {
      * @param companyName //the chosen company name
      * @param startingCapital   //the starting capital
      */
-    public game(String companyName, int startingCapital){
+    public Game(String companyName, int startingCapital){
         this.companyName = companyName;
         this.startingCapital = startingCapital;
         logStartingValues();
@@ -274,10 +274,10 @@ public class game {
     public void setCompanyName(String companyName) {this.companyName = companyName;}
     public int getStartingCapital() {return startingCapital;}
     public void setStartingCapital(int startingCapital) {this.startingCapital = startingCapital;}
-    public department getFirstOffice() {return firstOffice;}
-    public void setFirstOffice(department firstOffice) {this.firstOffice = firstOffice;}
-    public contract getCurrentContract() {return currentContract;}
-    public void setCurrentContract(contract currentContract) {this.currentContract = currentContract;}
+    public Department getFirstOffice() {return firstOffice;}
+    public void setFirstOffice(Department firstOffice) {this.firstOffice = firstOffice;}
+    public Contract getCurrentContract() {return currentContract;}
+    public void setCurrentContract(Contract currentContract) {this.currentContract = currentContract;}
     public int getCurrentCapital() {return currentCapital;}
     public void setCurrentCapital(int currentCapital) {this.currentCapital = currentCapital;}
     public int getCurrentDay() {return currentDay;}

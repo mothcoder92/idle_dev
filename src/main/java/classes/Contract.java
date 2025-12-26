@@ -4,7 +4,7 @@ import java.util.Random;
 
 /// A classes.contract is a classes.game objective that can be completed
 /// to earn capital
-public class contract {
+public class Contract {
 
     private String contractName;
     public boolean isCompleted;
@@ -41,7 +41,7 @@ public class contract {
      * name and description and successes/payout based on difficulty
      * @param contractDifficulty    //difficulty of classes.contract
      */
-    public contract(int contractDifficulty) {
+    public Contract(int contractDifficulty) {
         this.contractDifficulty = contractDifficulty;
         //leg fest wv Zeilen auf Basis der Schwierigkeit
         this.isCompleted = false;
