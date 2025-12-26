@@ -1,6 +1,6 @@
 package at.ac.hcw.idledevgame;
 
-import classes.game;
+import classes.Game;
 import javafx.application.Application;
 import java.util.Scanner;
 
@@ -31,12 +31,12 @@ public class Launcher {
                 break;
                 case 2:
                     //Console game
-                    game ConsolePlaythrough = new game();
+                    Game ConsolePlaythrough = new Game();
                     ConsolePlaythrough.consoleGame();
                     break;
                     case 3:
                         //auto-run game with log
-                        game AutoRunGame = new game();
+                        Game AutoRunGame = new Game();
                         AutoRunGame.gameAutoRun();
                         AutoRunGame.printGameLog();
             default:
