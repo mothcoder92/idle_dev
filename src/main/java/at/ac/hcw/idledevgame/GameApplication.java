@@ -12,7 +12,9 @@ public class GameApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("main-game-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 562);
-        stage.setTitle("Idle Game");
+        stage.setTitle("Idle Macrop");
+        stage.setMaxWidth(1000);
+        stage.setMaxHeight(562);
         stage.setScene(scene);
         stage.show();
     }
