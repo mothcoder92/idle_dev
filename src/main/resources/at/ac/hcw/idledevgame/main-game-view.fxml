@@ -31,7 +31,7 @@
                         <RowConstraints maxHeight="319.0" minHeight="10.0" prefHeight="254.20000610351565" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <GridPane alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" GridPane.rowIndex="2">
+                        <GridPane fx:id="dev1" alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" visible="true" GridPane.rowIndex="2">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -49,7 +49,6 @@
                                 </ImageView>
                                 <Label text="Coding Speed" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                 <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                                <TextArea editable="false" prefHeight="57.0" prefWidth="96.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed" styleClass="upgrade-btn" stylesheets="@stylesheet.css" text="Upgrade">
@@ -74,9 +73,22 @@
                                         </Label>
                                     </children>
                                 </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                                      <TextArea editable="false" prefHeight="132.0" prefWidth="150.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" />
+                              <Button mnemonicParsing="false" onAction="#fireDev1" prefHeight="26.0" prefWidth="40.0" styleClass="finish-btn" text="Fire">
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                        </HBox>
                             </children>
                         </GridPane>
-                  <GridPane alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <GridPane fx:id="dev2" alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" visible="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -95,10 +107,9 @@
                         </ImageView>
                         <Label text="Coding Speed" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <TextArea editable="false" prefHeight="138.0" prefWidth="118.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed" styleClass="upgrade-btn" text="Upgrade">
+                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed1" styleClass="upgrade-btn" text="Upgrade">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -112,21 +123,34 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="203.0" layoutY="138.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed" styleClass="upgrade-btn" text="Upgrade">
+                              <Button mnemonicParsing="false" onAction="#upgradeQualityOfCode1" styleClass="upgrade-btn" text="Upgrade">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Label fx:id="levelCodingSpeed11" text="Stufe 1">
+                              <Label fx:id="levelQualityOfCode1" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
                         </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <TextArea editable="false" prefHeight="132.0" prefWidth="150.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" />
+                              <Button mnemonicParsing="false" onAction="#fireDev2" prefHeight="26.0" prefWidth="40.0" styleClass="finish-btn" text="Fire">
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                        </HBox>
                      </children>
                   </GridPane>
-                  <GridPane alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" GridPane.rowIndex="3">
+                  <GridPane fx:id="dev3" alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" visible="true" GridPane.rowIndex="3">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -144,10 +168,9 @@
                         </ImageView>
                         <Label text="Coding Speed" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                        <TextArea editable="false" prefHeight="45.0" prefWidth="100.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed" styleClass="upgrade-btn" text="Upgrade">
+                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed2" styleClass="upgrade-btn" text="Upgrade">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -161,7 +184,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeQualityOfCode" styleClass="upgrade-btn" text="Upgrade" />
+                              <Button mnemonicParsing="false" onAction="#upgradeQualityOfCode2" styleClass="upgrade-btn" text="Upgrade" />
                               <Label fx:id="levelQualityOfCode2" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
@@ -169,9 +192,22 @@
                               </Label>
                            </children>
                         </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <TextArea editable="false" prefHeight="131.0" prefWidth="150.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" />
+                              <Button mnemonicParsing="false" onAction="#fireDev3" prefHeight="26.0" prefWidth="45.0" styleClass="finish-btn" text="Fire">
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                        </HBox>
                      </children>
                   </GridPane>
-                  <GridPane alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <GridPane fx:id="dev4" alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" visible="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -189,10 +225,9 @@
                         </ImageView>
                         <Label text="Coding Speed" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                        <TextArea editable="false" prefHeight="57.0" prefWidth="96.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed" styleClass="upgrade-btn" text="Upgrade">
+                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed3" styleClass="upgrade-btn" text="Upgrade">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -206,13 +241,26 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeQualityOfCode" styleClass="upgrade-btn" text="Upgrade" />
+                              <Button mnemonicParsing="false" onAction="#upgradeQualityOfCode3" styleClass="upgrade-btn" text="Upgrade" />
                               <Label fx:id="levelQualityOfCode3" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <TextArea editable="false" prefHeight="131.0" prefWidth="150.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" />
+                              <Button mnemonicParsing="false" onAction="#fireDev4" prefHeight="26.0" prefWidth="45.0" styleClass="finish-btn" text="Fire">
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
                         </HBox>
                      </children>
                   </GridPane>
@@ -230,9 +278,9 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
                         <Label alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="330.0" styleClass="developer-txt" text="Hire a new Developer: " />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="51.0" styleClass="finish-btn" text="Hire" textAlignment="CENTER">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#hireNewDev" prefHeight="27.0" prefWidth="51.0" styleClass="finish-btn" text="Hire" textAlignment="CENTER">
                            <HBox.margin>
-                              <Insets top="12.0" />
+                              <Insets top="10.0" />
                            </HBox.margin>
                         </Button>
                      </children>
