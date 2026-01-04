@@ -1,12 +1,50 @@
 package at.ac.hcw.idledevgame;
 
+import classes.Developer;
+import classes.Game;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.awt.*;
 
 public class GameController {
+
+
+    //Game variables
+    private Game game = new Game("Macrosoft", 1000);
+    private Timeline timeline;
+
+
+
+    //region FXML properties
+    @FXML
+    public Label dev0_name;
+    @FXML
+    public Label dev0_level;
+    @FXML
+    public Label dev0_salary;
+    @FXML
+    public Button dev_0_upgrade_quality;
+    @FXML
+    public Button dev_0_upgrade_codeSpeed;
+    @FXML
+    private Label currentDay;
+    @FXML
+    private Label currentCash;
+    @FXML
+    private TextField CompName;
     @FXML
     private Label levelCodingSpeed;
     @FXML
@@ -32,11 +70,22 @@ public class GameController {
     @FXML
     private GridPane dev4;
 
+    //endregion
+
+    @FXML
+    private Tooltip dev_0_upgradeCodingSpeedTooltip = new Tooltip();
+    @FXML
+    private Tooltip dev_0_upgradeQualityOfCodeTooltip = new Tooltip();
+
     @FXML
     protected void upgradeCodingSpeed() {
-        int lvl = Integer.parseInt(levelCodingSpeed.getText().substring(6));
-        lvl++;
-        levelCodingSpeed.setText("Stufe " + lvl);
+        Developer dev0 = game.developers.get(0);
+        if(game.currentCapital.get() > dev0.getcodingSpeed().getNextUpgradeCost()){
+            dev0.upgradeCodingSpeed();
+        }
+        else{
+            //todo: flash money or something
+        }
     }
 
     @FXML
@@ -120,5 +169,92 @@ public class GameController {
     protected void fireDev4() {
         dev4.setVisible(false);
     }
+
+    private void initUI(){
+        Tooltip.install(dev_0_upgrade_codeSpeed, dev_0_upgradeCodingSpeedTooltip);
+        Tooltip.install(dev_0_upgrade_quality, dev_0_upgradeQualityOfCodeTooltip);
+
+        dev_0_upgrade_codeSpeed.setOnMouseEntered(e -> {
+            dev_0_upgradeCodingSpeedTooltip.setText(
+                    "Upgrade cost: " + game.developers.get(0).getcodingSpeed().getNextUpgradeCost()
+            );
+        });
+
+        dev_0_upgrade_quality.setOnMouseExited(e -> {
+            dev_0_upgradeCodingSpeedTooltip.setText(
+                    "Upgrade cost: 1000" //todo: + something
+            );
+        });
+
+    }
+
+
+    //Initialize UI with game values
+    @FXML
+    private void initialize(){
+
+        //UI fields
+        initUI();
+        //Set company name
+        CompName.textProperty().bind(game.companyNameProperty());
+        //Set cash
+        currentCash.textProperty().bind(game.currentCapital.asString());
+        //Set starting day
+        currentDay.textProperty().bind(game.currentDay.asString());
+
+        //Add starting developer
+        if(!game.developers.isEmpty()){
+            Developer dev0 = game.developers.getFirst();
+
+            dev0_name.textProperty().bind(dev0.getDeveloperNameProperty());
+            dev0_salary.textProperty().bind(dev0.getSalaryProperty().asString());
+            dev0_level.textProperty().bind(dev0.getDeveloperTitle());
+
+            levelCodingSpeed.textProperty().bind(dev0.getCodingSpeedProperty().asString());
+            levelQualityOfCode.textProperty().bind(dev0.getSuccessRateProperty().asString());
+        }
+
+        //Initialize timeline
+        timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), e-> game.advanceHour())
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    public void pauseGame(){
+        timeline.pause();
+    }
+
+    public void resumeGame(){
+        timeline.play();
+    }
+
+    @FXML
+    private void updateContracts(){
+        //update developers fields
+        //update contract fields
+
+
+    }
+
+    @FXML
+    private void updateDevelopers(){
+        //increase stat/whatever
+        //update values in game
+        //refresh UI?
+
+    }
+
+    @FXML
+    private void progressOneHour(){
+        //check dev progress against contract
+        //check for contract finished
+
+    }
+
+
+
+
 
 }

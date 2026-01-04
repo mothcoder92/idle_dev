@@ -1,6 +1,11 @@
 package classes;
 
 import at.ac.hcw.idledevgame.Launcher;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,16 +18,22 @@ import java.util.Random;
 public class Game {
 
     //region local variables
-    private String companyName = "Macrosoft Inc.";
-    private int startingCapital = 5000;
+    private StringProperty companyName = new SimpleStringProperty("Macrosoft Inc.");
+    private IntegerProperty startingCapital = new SimpleIntegerProperty(5000);
     private final int _GAME_SPEED = 1;
+    //endregion
+
+    //region game time
+    private static final int WORK_HOURS_PER_DAY = 12;
+    private int hour = 0;
+    private Game game;
     //endregion
 
     //region global variables
     public Department firstOffice;
     public Contract currentContract;
-    public int currentCapital;
-    public int currentDay;
+    public IntegerProperty currentCapital = new SimpleIntegerProperty(0);
+    public IntegerProperty currentDay = new SimpleIntegerProperty(1);
     public List<String> gameLog = new ArrayList<>();
     public boolean running = false;
     //endregion
@@ -49,9 +60,12 @@ public class Game {
      * @param startingCapital   //the starting capital
      */
     public Game(String companyName, int startingCapital){
-        this.companyName = companyName;
-        this.startingCapital = startingCapital;
+        this.companyName.set(companyName);
+        this.currentCapital.set(startingCapital);
         logStartingValues();
+        //initial dev
+        this.developers.add(new Developer(4));
+
     }
 
     /**
@@ -150,6 +164,22 @@ public class Game {
         return true;
     }
 
+    public void advanceHour(){
+        this.hour++;
+
+        //per hour game object things
+
+        if(hour >= WORK_HOURS_PER_DAY){
+            hour = 0;
+            advanceDay();
+        }
+    }
+
+    public void advanceDay(){
+        currentDay.set(currentDay.get()+1);
+        //todo: events
+    }
+
 
     //region Game control
 
@@ -187,7 +217,7 @@ public class Game {
                 logGameAction("Contract has been successfully finished!");
                 //get new contract todo
                 logGameAction("We have earned 1000€");
-                currentCapital += 1000;
+                currentCapital.add(1000);
                 return true;
             }
             return false;
@@ -198,7 +228,7 @@ public class Game {
     }
 
     public void nextDay(){
-        this.currentDay +=1;
+        this.currentDay.add(1);
         logGameAction("has started.");
 
         //todo: update variables
@@ -220,8 +250,8 @@ public class Game {
      * Resets the game to starting values
      */
     private void resetGame(){
-        this.currentCapital = startingCapital;
-        this.currentDay = 1;
+        setCurrentCapital(startingCapital.getValue());
+        this.currentDay.set(1);
         this.gameLog.clear();
         this.developers.clear();
     }
@@ -269,18 +299,36 @@ public class Game {
     }
     //endregion
 
+    //region ViewModel Properties
+    public StringProperty companyNameProperty(){
+        return this.companyName;
+    }
+
+    public IntegerProperty currentCapitalProperty(){
+        return this.currentCapital;
+    }
+
+
+
+    //endregion
+
+
+
+
     //region getter & setter
-    public String getCompanyName() {return companyName;}
-    public void setCompanyName(String companyName) {this.companyName = companyName;}
-    public int getStartingCapital() {return startingCapital;}
-    public void setStartingCapital(int startingCapital) {this.startingCapital = startingCapital;}
+    public String getCompanyName() {return this.companyName.get();}
+    public void setCompanyName(String companyName) {this.companyName.set(companyName);}
+    public int getStartingCapital() {return this.startingCapital.get();}
+    public void setStartingCapital(int startingCapital) {this.startingCapital.set(startingCapital);}
     public Department getFirstOffice() {return firstOffice;}
     public void setFirstOffice(Department firstOffice) {this.firstOffice = firstOffice;}
     public Contract getCurrentContract() {return currentContract;}
     public void setCurrentContract(Contract currentContract) {this.currentContract = currentContract;}
-    public int getCurrentCapital() {return currentCapital;}
-    public void setCurrentCapital(int currentCapital) {this.currentCapital = currentCapital;}
-    public int getCurrentDay() {return currentDay;}
-    public void setCurrentDay(int currentDay) {this.currentDay = currentDay;}
+    public int getCurrentCapital() {return this.currentCapital.get();}
+    public void setCurrentCapital(int currentCapital) {this.currentCapital.set(currentCapital);}
+    public int getCurrentDay() {return this.currentDay.get();}
+    public void setCurrentDay(int currentDay) {this.currentDay.set(currentDay);}
+    public int getHour() {return hour;}
+    public void setHour(int hour) {this.hour = hour;}
     //endregion
 }

@@ -1,5 +1,10 @@
 package classes;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,12 +13,13 @@ import java.util.ResourceBundle;
 public class Developer {
 
     //Properties
-    private final String name;
+    private final StringProperty name = new SimpleStringProperty();
     private int level;
     Attribute codingSpeed;
     Attribute successRate;
-    private int salary;
+    private IntegerProperty salary = new SimpleIntegerProperty(0);
     private List<String> devLog;
+    private StringProperty title = new SimpleStringProperty("Junior Developer");
 
     //Resources
     private static final ResourceBundle rb = ResourceBundle.getBundle("at/ac/hcw/idledevgame/Names");
@@ -25,7 +31,7 @@ public class Developer {
      * @param upperSkillBound ranks get generated between 1 and upperSkillBound
      */
     public Developer(int upperSkillBound) {
-        this.name = randomName();
+        this.name.set(randomName());
         this.devLog = new ArrayList<>();
         this.codingSpeed = new Attribute("codingSpeed", rand.nextInt(1, upperSkillBound));
         this.successRate = new Attribute("successRate", rand.nextInt(1, upperSkillBound));
@@ -39,7 +45,8 @@ public class Developer {
     public void updateDeveloper(){
         calculateLevel();
         calculateSalary();
-        logDevAction(this.name +"'s Level and Salary were updated.");
+        checkTitle();
+        logDevAction(this.name +"'s Level, Salary and Title were updated.");
     }
 
     /**
@@ -47,12 +54,22 @@ public class Developer {
      * @return number of successes
      */
     public int work(int difficulty){
-        int numberOfLinesWritten = this.codingSpeed.getRank() * 100;                    //Number of lines, e.g. Rank 5 = 500 Lines
-        float errorRate = 1.0f + ((this.successRate.getRank() - difficulty) / 10f);     //Multiplier based on difficulty e.g. 0.8 or 1.2
+        int numberOfLinesWritten = this.codingSpeed.getRank().get() * 100;                    //Number of lines, e.g. Rank 5 = 500 Lines
+        float errorRate = 1.0f + ((this.successRate.getRank().get() - difficulty) / 10f);     //Multiplier based on difficulty e.g. 0.8 or 1.2
         errorRate = Math.abs(errorRate);                                                //Ensure positive value
         int result = Math.round((numberOfLinesWritten * errorRate));
         logDevAction(this.name + " worked, and implemented " +result+ " lines.");
         return result;
+    }
+
+    public void upgradeCodingSpeed(){
+        this.codingSpeed.upgradeAttribute();
+        updateDeveloper();
+    }
+
+    public void upgradeSuccessRate(){
+        this.successRate.upgradeAttribute();
+        updateDeveloper();
     }
 
     /**
@@ -67,23 +84,48 @@ public class Developer {
      * Initialize salary based on level
      */
     private void calculateSalary(){
-        this.salary = (int) (this.level * 500 * rand.nextFloat(0.8f,1.2f));
+        this.salary.set(
+                (int) (this.level * 500 * rand.nextFloat(0.8f,1.2f)));
     }
 
     /**
      * Initialize level as sum of ranks
      */
     private void calculateLevel() {
-        this.level = codingSpeed.getRank() +  successRate.getRank();
+        this.level = codingSpeed.getRank().get() +  successRate.getRank().get();
     }
 
-    //Getters & Setters
-    public String getName() {return name;}
-    public int getCodingSpeed() {return codingSpeed.getRank();}
-    public float getSuccessRate() {return (float) successRate.getRank();}
-    public int getRank() {return level;}
-    public int getSalary() {return salary;}
+    private void checkTitle(){
+        SimpleStringProperty result = new SimpleStringProperty();
+        if(level < 6){
+            result.set("Junior Developer");
+        }
+        else if(level >= 6 && level < 18){
+            result.set("Regular Developer");
+        }
+        else if(level >= 18){
+            result.set("Senior Developer");
+        }
+        this.title.set(result.getValue());
+    }
 
+
+    //Getters & Setters
+    public String getName() {return name.get();}
+    public int getCodingSpeed() {return codingSpeed.getRank().get();}
+    public float getSuccessRate() {return (float) successRate.getRank().get();}
+    public int getRank() {return level;}
+    public int getSalary() {return salary.get();}
+    public int getLevel() {return level;}
+    public Attribute getcodingSpeed() {return codingSpeed;}
+    public Attribute getsuccessRate() {return successRate;}
+
+    //Observable properties
+    public IntegerProperty getCodingSpeedProperty() { return this.codingSpeed.getRank(); }
+    public IntegerProperty getSuccessRateProperty() { return this.successRate.getRank(); }
+    public IntegerProperty getSalaryProperty(){ return this.salary;}
+    public StringProperty getDeveloperNameProperty(){ return this.name;}
+    public StringProperty getDeveloperTitle(){ return this.title;}
 
     //region Helpers
 
