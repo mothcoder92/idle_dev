@@ -1,10 +1,8 @@
 package classes;
 
 import at.ac.hcw.idledevgame.Launcher;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +23,15 @@ public class Game {
 
     //region game time
     private static final int WORK_HOURS_PER_DAY = 12;
+    private static final int MINUTES_PER_HOUR = 100;
     private int hour = 0;
+    private int minute = 0;
     private Game game;
     //endregion
 
     //region global variables
     public Department firstOffice;
-    public Contract currentContract;
+    public ObjectProperty<Contract> currentContract = new SimpleObjectProperty<Contract>();
     public IntegerProperty currentCapital = new SimpleIntegerProperty(0);
     public IntegerProperty currentDay = new SimpleIntegerProperty(1);
     public List<String> gameLog = new ArrayList<>();
@@ -65,6 +65,8 @@ public class Game {
         logStartingValues();
         //initial dev
         this.developers.add(new Developer(4));
+        //initial contract
+        this.currentContract.set(new Contract(1));
 
     }
 
@@ -164,8 +166,29 @@ public class Game {
         return true;
     }
 
+    public void advanceMinute(){
+        this.minute++;
+        int contractProgress = 0;
+
+        for(Developer developer : this.developers){
+            developer.addProgress();
+            if(developer.getProgress().get() >= 1.0){
+                developer.setProgress(0.0);
+                contractProgress += developer.work(currentContract.get().getContractDifficulty());
+                //numberofLines
+            }
+        }
+
+        this.currentContract.get().progressContract(contractProgress);
+
+        if(minute >= MINUTES_PER_HOUR){
+            hour++;
+            minute = 0;
+            advanceHour();
+        }
+    }
+
     public void advanceHour(){
-        this.hour++;
 
         //per hour game object things
 
@@ -200,7 +223,7 @@ public class Game {
         try {
             int codeLinesWritten = 0;
             for(Developer dev : this.developers){
-                codeLinesWritten += dev.work(currentContract.getContractDifficulty()); //todo: check contract difficulty
+                codeLinesWritten += dev.work(currentContract.get().getContractDifficulty()); //todo: check contract difficulty
             }
 
             //todo: add success to contract
@@ -322,13 +345,14 @@ public class Game {
     public void setStartingCapital(int startingCapital) {this.startingCapital.set(startingCapital);}
     public Department getFirstOffice() {return firstOffice;}
     public void setFirstOffice(Department firstOffice) {this.firstOffice = firstOffice;}
-    public Contract getCurrentContract() {return currentContract;}
-    public void setCurrentContract(Contract currentContract) {this.currentContract = currentContract;}
+    public Contract getCurrentContract() {return currentContract.get();}
+    public void setCurrentContract(Contract currentContract) {this.currentContract.set(currentContract);}
     public int getCurrentCapital() {return this.currentCapital.get();}
     public void setCurrentCapital(int currentCapital) {this.currentCapital.set(currentCapital);}
     public int getCurrentDay() {return this.currentDay.get();}
     public void setCurrentDay(int currentDay) {this.currentDay.set(currentDay);}
     public int getHour() {return hour;}
     public void setHour(int hour) {this.hour = hour;}
+    public ObjectProperty<Contract> getContractProperty() {return this.currentContract;}
     //endregion
 }

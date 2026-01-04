@@ -1,12 +1,15 @@
 package at.ac.hcw.idledevgame;
 
+import classes.Contract;
 import classes.Developer;
 import classes.Game;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -16,10 +19,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
+import javafx.scene.paint.Color;
 
 import java.awt.*;
 
 public class GameController {
+
 
 
     //Game variables
@@ -39,6 +44,10 @@ public class GameController {
     public Button dev_0_upgrade_quality;
     @FXML
     public Button dev_0_upgrade_codeSpeed;
+    @FXML
+    public ProgressBar dev_0_progress;
+    @FXML
+    public Label dev_0_lastWork;
     @FXML
     private Label currentDay;
     @FXML
@@ -69,6 +78,16 @@ public class GameController {
     private GridPane dev3;
     @FXML
     private GridPane dev4;
+    @FXML
+    public TextField contract_title;
+    @FXML
+    public TextArea contract_description;
+    @FXML
+    public Label contract_lines;
+    @FXML
+    public Label contract_payout;
+    @FXML
+    public Button contract_finish;
 
     //endregion
 
@@ -84,15 +103,19 @@ public class GameController {
             dev0.upgradeCodingSpeed();
         }
         else{
-            //todo: flash money or something
+            flashLabel(currentCash);
         }
     }
 
     @FXML
     protected void upgradeQualityOfCode() {
-        int lvl = Integer.parseInt(levelQualityOfCode.getText().substring(6));
-        lvl++;
-        levelQualityOfCode.setText("Stufe " + lvl);
+        Developer dev0 = game.developers.get(0);
+        if(game.currentCapital.get() > dev0.getsuccessRate().getNextUpgradeCost()){
+            dev0.upgradeSuccessRate();
+        }
+        else{
+            flashLabel(currentCash);
+        }
     }
 
     @FXML
@@ -170,6 +193,15 @@ public class GameController {
         dev4.setVisible(false);
     }
 
+    @FXML
+    public void completeContract(ActionEvent actionEvent) {
+        //add money
+        game.currentCapital.set(game.getCurrentCapital() + game.currentContract.get().getPayout());
+        //get new contract
+        game.currentContract.set(new Contract(2));
+        //update ui
+    }
+
     private void initUI(){
         Tooltip.install(dev_0_upgrade_codeSpeed, dev_0_upgradeCodingSpeedTooltip);
         Tooltip.install(dev_0_upgrade_quality, dev_0_upgradeQualityOfCodeTooltip);
@@ -182,9 +214,22 @@ public class GameController {
 
         dev_0_upgrade_quality.setOnMouseExited(e -> {
             dev_0_upgradeCodingSpeedTooltip.setText(
-                    "Upgrade cost: 1000" //todo: + something
+                    "Upgrade cost: " + game.developers.get(0).getsuccessRate().getNextUpgradeCost()
             );
         });
+
+        //bind progress bar to dev value
+        dev_0_progress.progressProperty().bind(game.developers.get(0).getProgress());
+        //bind last work
+        dev_0_lastWork.textProperty().bind(game.developers.get(0).getWrittenLinesInLastWorkstepProperty().asString());
+
+        //bind contract fields
+        contract_title.textProperty().bind(game.getContractProperty().flatMap(Contract::getContractNameProperty));
+        contract_description.textProperty().bind(game.getContractProperty().flatMap(Contract::getContractDescriptionProperty));
+        contract_lines.textProperty().bind(game.getContractProperty().flatMap(Contract::getContractLinesProperty));
+        contract_payout.textProperty().bind(game.getContractProperty().flatMap(Contract::getContractPayoutProperty));
+        contract_finish.disableProperty().bind(game.getContractProperty().flatMap(Contract::isCompletedProperty));
+
 
     }
 
@@ -216,7 +261,7 @@ public class GameController {
 
         //Initialize timeline
         timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), e-> game.advanceHour())
+                new KeyFrame(Duration.seconds(0.1), e-> game.advanceMinute())
         );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -252,6 +297,27 @@ public class GameController {
         //check for contract finished
 
     }
+
+    //region Animations
+    @FXML
+    private void flashLabel(Label label){
+        final Color originalColor = (Color) label.getTextFill();
+        final Color flashColor = Color.RED;
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, e -> {label.setTextFill(flashColor);}),
+                new KeyFrame(Duration.seconds(0.25), e-> {label.setTextFill(originalColor);}),
+                new KeyFrame(Duration.seconds(0.5), e-> {label.setTextFill(flashColor);}),
+                new KeyFrame(Duration.seconds(0.75), e-> {label.setTextFill(originalColor);})
+        );
+        timeline.setCycleCount(1);
+        timeline.play();
+    }
+
+
+
+
+    //endregion
 
 
 

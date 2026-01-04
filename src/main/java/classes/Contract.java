@@ -1,17 +1,23 @@
 package classes;
 
+import javafx.beans.property.*;
+
 import java.util.Random;
 
 /// A classes.contract is a classes.game objective that can be completed
 /// to earn capital
 public class Contract {
 
-    private String contractName;
-    public boolean isCompleted;
-    private int numberOfLinesWritten;
-    private int payout;
-    private String contractDescription;
-    private int contractDifficulty;
+    public StringProperty contractName = new SimpleStringProperty();
+    public BooleanProperty isCompleted = new SimpleBooleanProperty(true);
+    public int numberOfLinesWritten;
+    public int numberOfLinesNeeded;
+    public int payout;
+    public StringProperty contractDescription = new SimpleStringProperty();
+    public int contractDifficulty;
+
+    //Observable properties
+    private StringProperty contractLinesProperty = new SimpleStringProperty();
 
     //Randomness
     private float rngUpperBound = 0.5f;
@@ -44,7 +50,7 @@ public class Contract {
     public Contract(int contractDifficulty) {
         this.contractDifficulty = contractDifficulty;
         //leg fest wv Zeilen auf Basis der Schwierigkeit
-        this.isCompleted = false;
+        this.isCompleted.set(true);
 
         //Schwierigkeit 1 zwischen 1000-2000 Zeilen
         Random rand = new Random();
@@ -57,13 +63,12 @@ public class Contract {
 
     //implement here
 
-    public boolean progressContract(int numberOfLines){
-
-
-        //todo: implement
-        //return true as soon as classes.contract is completed
-
-        return false;
+    public void progressContract(int numberOfLines){
+        numberOfLinesWritten += numberOfLines;
+        if(numberOfLinesWritten >= numberOfLinesNeeded){
+            isCompleted.set(false);
+        }
+        setContractLinesProperty();
     }
 
     private void generateContract(){
@@ -71,6 +76,13 @@ public class Contract {
 
         //contractDifficulty * RND = numberOfSuccessesNeeded
         //difficulty * successesneeded * RND = payout
+
+        this.contractName.set("Meine erste Website");
+        this.numberOfLinesWritten = 0;
+        this.numberOfLinesNeeded = this.contractDifficulty * 1000;
+        this.payout = 5000;
+        this.contractDescription.set("Dies ist ein Testcontract. Noch ist nicht mehr implementiert.");
+        setContractLinesProperty();
 
     }
 
@@ -88,17 +100,31 @@ public class Contract {
         return "";
     }
 
+    public StringProperty getContractLinesProperty(){
+        return contractLinesProperty;
+    }
+
+    public StringProperty getContractPayoutProperty(){
+        return new SimpleStringProperty("Payout: " +  this.payout + " IMC");
+    }
+
+    public StringProperty getContractNameProperty(){ return this.contractName; }
+    public StringProperty getContractDescriptionProperty(){ return this.contractDescription; }
+    public BooleanProperty isCompletedProperty(){ return this.isCompleted; }
+
+    public void setContractLinesProperty(){ this.contractLinesProperty.set(numberOfLinesWritten + " / " + numberOfLinesNeeded);}
+
     //Getters and Setters
-    public String getContractName() {return contractName;}
-    public void setContractName(String contractName) {this.contractName = contractName;}
+    public String getContractName() {return contractName.get();}
+    public void setContractName(String contractName) {this.contractName.set(contractName);}
     //public int getContractNumber() {return contractNumber;}
     //public void setContractNumber(int contractNumber) {this.contractNumber = contractNumber;}
     public int getNumberOfLinesWritten() {return numberOfLinesWritten;}
     public void setNumberOfLinesWritten(int numberOfLinesWritten) {this.numberOfLinesWritten = numberOfLinesWritten;}
     public int getPayout() {return payout;}
     public void setPayout(int payout) {this.payout = payout;}
-    public String getContractDescription() {return contractDescription;}
-    public void setContractDescription(String contractDescription) {this.contractDescription = contractDescription;}
+    public String getContractDescription() {return contractDescription.get();}
+    public void setContractDescription(String contractDescription) {this.contractDescription.set(contractDescription);}
     public int getContractDifficulty() {return contractDifficulty;}
     public void setContractDifficulty(int contractDifficulty) {this.contractDifficulty = contractDifficulty;}
 }

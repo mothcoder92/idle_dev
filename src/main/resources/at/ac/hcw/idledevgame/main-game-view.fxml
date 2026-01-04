@@ -32,6 +32,7 @@
                                 <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="90.66666412353516" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <ImageView fitHeight="115.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -41,6 +42,7 @@
                                 </ImageView>
                                 <Label text="Coding Speed" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                 <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <ProgressBar fx:id="dev_0_progress" prefWidth="200.0" progress="0.0" GridPane.rowIndex="3" />
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                     <children>
                                         <Button fx:id="dev_0_upgrade_codeSpeed" mnemonicParsing="false" onAction="#upgradeCodingSpeed" styleClass="upgrade-btn" stylesheets="@stylesheet.css" text="Upgrade">
@@ -67,11 +69,6 @@
                                 </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                               <Button mnemonicParsing="false" onAction="#fireDev1" prefHeight="26.0" prefWidth="40.0" styleClass="finish-btn" text="Fire">
-                                 <HBox.margin>
-                                    <Insets top="5.0" />
-                                 </HBox.margin>
-                              </Button>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                      <!--
@@ -80,6 +77,7 @@
                                       <Label fx:id="dev0_name" text="Dev0" />
                                       <Label fx:id="dev0_level" text="Dev0_Level" />
                                       <Label fx:id="dev0_salary" text="Dev0_Salary" />
+                                     <Button mnemonicParsing="false" onAction="#fireDev1" prefHeight="26.0" prefWidth="40.0" styleClass="finish-btn" text="Fire" />
                                  </children>
                               </VBox>
                            </children>
@@ -87,6 +85,7 @@
                               <Insets top="10.0" />
                            </GridPane.margin>
                         </HBox>
+                        <Label fx:id="dev_0_lastWork" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             </children>
                         </GridPane>
                   <GridPane fx:id="dev2" alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" visible="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -328,15 +327,15 @@
                <children>
                   <HBox prefHeight="30.0" prefWidth="226.0">
                      <children>
-                        <TextField alignment="CENTER" prefHeight="36.0" prefWidth="173.0" styleClass="title-txt" text="Auftrag 1" />
-                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="48.0" styleClass="finish-btn" stylesheets="@stylesheet.css" text="Finish" />
+                        <TextField fx:id="contract_title" alignment="CENTER" prefHeight="36.0" prefWidth="173.0" styleClass="title-txt" text="Auftrag 1" />
+                        <Button fx:id="contract_finish" mnemonicParsing="false" onAction="#completeContract" prefHeight="36.0" prefWidth="48.0" styleClass="finish-btn" stylesheets="@stylesheet.css" text="Finish" />
                      </children>
                   </HBox>
-                  <TextArea editable="false" prefHeight="189.0" prefWidth="226.0" styleClass="normal-txt" text="Das ist eine Beschreibung für den Auftrag 1. Hier wird in maximal 3 Sätzen beschrieben was in diesem Auftrag zu tun ist. Dies ist rein um das Spielerlebnis aufzuwerten, die Beschreibung hat keine Auswirkung auf das Spiel." wrapText="true" />
+                  <TextArea fx:id="contract_description" editable="false" prefHeight="189.0" prefWidth="226.0" styleClass="normal-txt" text="Das ist eine Beschreibung für den Auftrag 1. Hier wird in maximal 3 Sätzen beschrieben was in diesem Auftrag zu tun ist. Dies ist rein um das Spielerlebnis aufzuwerten, die Beschreibung hat keine Auswirkung auf das Spiel." wrapText="true" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="106.0" styleClass="normal-txt" text="459/1500 LoC" />
-                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="118.0" styleClass="normal-txt" text="Preis: 850 IMC" />
+                        <Label fx:id="contract_lines" alignment="CENTER" prefHeight="36.0" prefWidth="106.0" styleClass="normal-txt" text="459/1500 LoC" />
+                        <Label fx:id="contract_payout" alignment="CENTER" prefHeight="36.0" prefWidth="118.0" styleClass="normal-txt" text="Preis: 850 IMC" />
                      </children>
                   </HBox>
                </children>

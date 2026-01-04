@@ -1,9 +1,6 @@
 package classes;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +17,9 @@ public class Developer {
     private IntegerProperty salary = new SimpleIntegerProperty(0);
     private List<String> devLog;
     private StringProperty title = new SimpleStringProperty("Junior Developer");
+    private DoubleProperty progress = new SimpleDoubleProperty(0.0);
+    private double progressStep;
+    private IntegerProperty writtenLinesInLastWorkstep = new  SimpleIntegerProperty(0);
 
     //Resources
     private static final ResourceBundle rb = ResourceBundle.getBundle("at/ac/hcw/idledevgame/Names");
@@ -46,6 +46,7 @@ public class Developer {
         calculateLevel();
         calculateSalary();
         checkTitle();
+        progressStep = calculateProgress();
         logDevAction(this.name +"'s Level, Salary and Title were updated.");
     }
 
@@ -54,11 +55,12 @@ public class Developer {
      * @return number of successes
      */
     public int work(int difficulty){
-        int numberOfLinesWritten = this.codingSpeed.getRank().get() * 100;                    //Number of lines, e.g. Rank 5 = 500 Lines
-        float errorRate = 1.0f + ((this.successRate.getRank().get() - difficulty) / 10f);     //Multiplier based on difficulty e.g. 0.8 or 1.2
-        errorRate = Math.abs(errorRate);                                                //Ensure positive value
+        int numberOfLinesWritten = this.codingSpeed.getRank().get() * 100;
+        float errorRate = 1.0f + ((this.successRate.getRank().get() - difficulty) / 10f);
+        errorRate = Math.abs(errorRate);
         int result = Math.round((numberOfLinesWritten * errorRate));
         logDevAction(this.name + " worked, and implemented " +result+ " lines.");
+        this.writtenLinesInLastWorkstep.set(result);
         return result;
     }
 
@@ -109,6 +111,15 @@ public class Developer {
         this.title.set(result.getValue());
     }
 
+    private double calculateProgress(){
+        //between 0.0 and 1.0
+        return (double) this.codingSpeed.getRank().get() / 100;
+    }
+
+    public void addProgress(){
+        this.progress.set(this.progress.get()+progressStep);
+    }
+
 
     //Getters & Setters
     public String getName() {return name.get();}
@@ -119,6 +130,8 @@ public class Developer {
     public int getLevel() {return level;}
     public Attribute getcodingSpeed() {return codingSpeed;}
     public Attribute getsuccessRate() {return successRate;}
+    public DoubleProperty getProgress(){ return this.progress; }
+    public void setProgress(double progress){this.progress.set(progress);}
 
     //Observable properties
     public IntegerProperty getCodingSpeedProperty() { return this.codingSpeed.getRank(); }
@@ -126,6 +139,7 @@ public class Developer {
     public IntegerProperty getSalaryProperty(){ return this.salary;}
     public StringProperty getDeveloperNameProperty(){ return this.name;}
     public StringProperty getDeveloperTitle(){ return this.title;}
+    public IntegerProperty getWrittenLinesInLastWorkstepProperty() { return this.writtenLinesInLastWorkstep; }
 
     //region Helpers
 
