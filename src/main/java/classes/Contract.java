@@ -103,22 +103,19 @@ public class Contract {
     public StringProperty getContractLinesProperty(){
         return contractLinesProperty;
     }
-
     public StringProperty getContractPayoutProperty(){
         return new SimpleStringProperty("Payout: " +  this.payout + " IMC");
     }
 
+    //Observable properties
     public StringProperty getContractNameProperty(){ return this.contractName; }
     public StringProperty getContractDescriptionProperty(){ return this.contractDescription; }
     public BooleanProperty isCompletedProperty(){ return this.isCompleted; }
-
     public void setContractLinesProperty(){ this.contractLinesProperty.set(numberOfLinesWritten + " / " + numberOfLinesNeeded);}
 
     //Getters and Setters
     public String getContractName() {return contractName.get();}
     public void setContractName(String contractName) {this.contractName.set(contractName);}
-    //public int getContractNumber() {return contractNumber;}
-    //public void setContractNumber(int contractNumber) {this.contractNumber = contractNumber;}
     public int getNumberOfLinesWritten() {return numberOfLinesWritten;}
     public void setNumberOfLinesWritten(int numberOfLinesWritten) {this.numberOfLinesWritten = numberOfLinesWritten;}
     public int getPayout() {return payout;}

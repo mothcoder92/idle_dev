@@ -31,8 +31,6 @@ public class GameController {
     private Game game = new Game("Macrosoft", 1000);
     private Timeline timeline;
 
-
-
     //region FXML properties
     @FXML
     public Label dev0_name;
@@ -230,9 +228,7 @@ public class GameController {
         contract_payout.textProperty().bind(game.getContractProperty().flatMap(Contract::getContractPayoutProperty));
         contract_finish.disableProperty().bind(game.getContractProperty().flatMap(Contract::isCompletedProperty));
 
-
     }
-
 
     //Initialize UI with game values
     @FXML
@@ -313,9 +309,6 @@ public class GameController {
         timeline.setCycleCount(1);
         timeline.play();
     }
-
-
-
 
     //endregion
 
