@@ -45,6 +45,5 @@ public class hireController {
 
     @FXML
     protected void hire_1_btn_click(){
-        Stage s
     }
 }
