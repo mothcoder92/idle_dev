@@ -36,11 +36,12 @@ public class Game {
     public IntegerProperty currentDay = new SimpleIntegerProperty(1);
     public List<String> gameLog = new ArrayList<>();
     public boolean running = false;
+    public IntegerProperty totalContractsCompleted = new SimpleIntegerProperty(0);
     //endregion
 
     //region development variables
     public List<Exception> errors = new ArrayList<>();
-    public List<Developer>  developers = new ArrayList<>();
+    public ListProperty<Developer> developers = new SimpleListProperty<Developer>();
     //endregion
 
     /***
@@ -203,6 +204,21 @@ public class Game {
         //todo: events
     }
 
+    public void addTotalContractsCompleted(){
+        this.totalContractsCompleted.set(totalContractsCompleted.get()+1);
+    }
+
+    public void getNewContract(){
+        if(totalContractsCompleted.get() <= 3){
+            this.currentContract.set(new Contract(1));
+        }
+        else if(totalContractsCompleted.get() <= 3 && totalContractsCompleted.get() <= 6){
+            this.currentContract.set(new Contract(2));
+        }
+        else{
+            this.currentContract.set(new Contract(3));
+        }
+    }
 
     //region Game control
 

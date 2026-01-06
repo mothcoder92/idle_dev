@@ -2,7 +2,10 @@ package classes;
 
 import javafx.beans.property.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 /// A classes.contract is a classes.game objective that can be completed
 /// to earn capital
@@ -19,27 +22,9 @@ public class Contract {
     //Observable properties
     private StringProperty contractLinesProperty = new SimpleStringProperty();
 
-    //Randomness
-    private float rngUpperBound = 0.5f;
-    private float rngLowerBound = 1.5f;
-
-    //Contract Spieler startet Spiel
-    //Spiel start: game.class erstellt 5-10 Contracts (müssen abgeschlossen sein zum gewinnen)
-    // Contract: Schwierigkeit -> Zeilen Code für Abschluss notwendig
-    // Contract erstellen (Constructor) -> int Schwierigkeit (Zahl zwischen 1 und 5)
-
-    //Formel Developer: Coding Speed 5 * 100 = 500 Zeilen Code * Fehler Rate ( 0.8 - 1.2 * Schwierigkeit )
-
-
-    //Ablauf: Contract wird erstellt, und bekommt eine Schwierigkeit: 1
-    //M: Contract bekommt: wv Zeilen zum abschließen, namen, Beschreibung, ist er fertig?, payout
-    //M: Schwierigkeit 1: 2000 Zeilen, 3000€, namen und beschreibung generiert
-    //Ablauf: -> 400 neue Zeilen geschrieben
-    //M: 400/2000
-    //Ablauf: 1700 Zeilen geschrieben
-    //M: 2000/2000, boolean Wert: Contract abgeschlossen.
-
-
+    //Resources
+    private static final ResourceBundle rb = ResourceBundle.getBundle("at/ac/hcw/idledevgame/Contracts");
+    private static final Random rand = new Random();
 
 
     /***
@@ -49,19 +34,9 @@ public class Contract {
      */
     public Contract(int contractDifficulty) {
         this.contractDifficulty = contractDifficulty;
-        //leg fest wv Zeilen auf Basis der Schwierigkeit
         this.isCompleted.set(true);
-
-        //Schwierigkeit 1 zwischen 1000-2000 Zeilen
-        Random rand = new Random();
-        int Zeilen = rand.nextInt(1000,2000);
-        //todo: generate classes.contract values semi-randomly
-
         generateContract();
-
     }
-
-    //implement here
 
     public void progressContract(int numberOfLines){
         numberOfLinesWritten += numberOfLines;
@@ -72,32 +47,12 @@ public class Contract {
     }
 
     private void generateContract(){
-        //todo: implement
-
-        //contractDifficulty * RND = numberOfSuccessesNeeded
-        //difficulty * successesneeded * RND = payout
-
-        this.contractName.set("Meine erste Website");
+        //Generate name and description
+        randomNameAndDescription();
         this.numberOfLinesWritten = 0;
-        this.numberOfLinesNeeded = this.contractDifficulty * 1000;
-        this.payout = 5000;
-        this.contractDescription.set("Dies ist ein Testcontract. Noch ist nicht mehr implementiert.");
+        this.numberOfLinesNeeded = (int) (this.contractDifficulty * 1000 * rand.nextDouble(1,1.25));
+        this.payout = (int) (this.contractDifficulty * 5000 * rand.nextDouble(0.75, 3));
         setContractLinesProperty();
-
-    }
-
-    private String randomContractDescription(){
-
-        //todo: implement
-
-        return "";
-    }
-
-    private String randomContractName(){
-
-        //todo: implement
-
-        return "";
     }
 
     public StringProperty getContractLinesProperty(){
@@ -124,4 +79,31 @@ public class Contract {
     public void setContractDescription(String contractDescription) {this.contractDescription.set(contractDescription);}
     public int getContractDifficulty() {return contractDifficulty;}
     public void setContractDifficulty(int contractDifficulty) {this.contractDifficulty = contractDifficulty;}
+
+    //Helpers
+    /**
+     * Return a random entry from resource file
+     * @return string
+     */
+    private void randomNameAndDescription(){
+        List<String> titles = new ArrayList<>();
+        List<String> descriptions = new ArrayList<>();
+
+        int itemNumber = rand.nextInt(50);
+        for(String key : rb.keySet()){
+            if(key.startsWith("title" + ".")){
+                titles.add(rb.getString(key));
+            }
+        }
+        for(String key : rb.keySet()){
+            if(key.startsWith("description" + ".")){
+                descriptions.add(rb.getString(key));
+            }
+        }
+        contractName.set(titles.get(itemNumber));
+        contractDescription.set(descriptions.get(itemNumber));
+
+    }
+
+
 }
