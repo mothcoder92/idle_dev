@@ -6,22 +6,32 @@ import classes.Game;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class GameController {
 
@@ -159,16 +169,40 @@ public class GameController {
     }
 
     @FXML
-    protected void hireNewDev() {
-        if (!dev1.isVisible()) {
-            dev1.setVisible(true);
-        } else if (!dev2.isVisible()) {
-            dev2.setVisible(true);
-        } else if (!dev3.isVisible()) {
-            dev3.setVisible(true);
-        } else {
-            dev4.setVisible(true);
-        }
+    protected void hireNewDev() throws IOException {
+        pauseGame();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hire-window-view.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Hire Developer");
+        stage.setScene(new Scene(fxmlLoader.load(), 700, 300));
+        stage.show();
+
+        //If window is closed game will be fortgesetzt
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                resumeGame();
+            }
+        });
+
+//        if (!dev1.isVisible()) {
+//            dev1.setVisible(true);
+//        } else if (!dev2.isVisible()) {
+//            dev2.setVisible(true);
+//        } else if (!dev3.isVisible()) {
+//            dev3.setVisible(true);
+//        } else {
+//            dev4.setVisible(true);
+//        }
+//        resumeGame();
+//
+
+        // pause,
+        // dann kommt fenster
+        // spieler wählt liste von devs
+        // update developer liste von game object
+        // udate ui
     }
 
     @FXML
