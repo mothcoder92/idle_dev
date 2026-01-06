@@ -2,6 +2,7 @@ package classes;
 
 import at.ac.hcw.idledevgame.Launcher;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class Game {
     //region local variables
     private StringProperty companyName = new SimpleStringProperty("Macrosoft Inc.");
     private IntegerProperty startingCapital = new SimpleIntegerProperty(5000);
-    private final int _GAME_SPEED = 1;
     //endregion
 
     //region game time
@@ -26,7 +26,6 @@ public class Game {
     private static final int MINUTES_PER_HOUR = 100;
     private int hour = 0;
     private int minute = 0;
-    private Game game;
     //endregion
 
     //region global variables
@@ -41,7 +40,10 @@ public class Game {
 
     //region development variables
     public List<Exception> errors = new ArrayList<>();
-    public ListProperty<Developer> developers = new SimpleListProperty<Developer>();
+    public ListProperty<Developer> developers =
+            new SimpleListProperty<Developer>(
+                    FXCollections.observableArrayList()
+            );
     //endregion
 
     /***
@@ -269,9 +271,6 @@ public class Game {
     public void nextDay(){
         this.currentDay.add(1);
         logGameAction("has started.");
-
-        //todo: update variables
-
     }
 
     /**
@@ -346,8 +345,6 @@ public class Game {
     public IntegerProperty currentCapitalProperty(){
         return this.currentCapital;
     }
-
-
 
     //endregion
 
