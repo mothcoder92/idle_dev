@@ -3,16 +3,14 @@ package classes;
 import at.ac.hcw.idledevgame.Launcher;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /***
- * Represents the current game
- * Offers methods to track and influence game state
- * @author Johannes Schagerl
+ * Object that represents the current game
+ * Offers methods to track and influence game state,
+ * keeps track of variables and player choices.
  */
 public class Game {
 
@@ -44,17 +42,18 @@ public class Game {
             new SimpleListProperty<Developer>(
                     FXCollections.observableArrayList()
             );
+    public ListProperty<Developer> potentialDevelopers =
+            new SimpleListProperty<Developer>(
+                    FXCollections.observableArrayList()
+            );
     //endregion
 
     /***
      * Default constructor, with test-settings
+     * @deprecated used for console-game and testing
      */
     public Game(){
         logStartingValues();
-        //todo: implement
-        //contract Aufgabe1 = new contract()
-
-
     }
 
     /**
@@ -75,6 +74,7 @@ public class Game {
 
     /**
      * A console-based implementation for testing purposes
+     * @deprecated used for development and testing
      */
     public void consoleGame(){
         List<String> commands = new ArrayList<>();
@@ -133,6 +133,7 @@ public class Game {
     /**
      * Auto-playthrough with randomized values
      * for testing purposes
+     * @deprecated used for development and testing
      * @return  //false if errors occurred
      */
     public boolean gameAutoRun(){
@@ -155,20 +156,10 @@ public class Game {
         }
     }
 
-    public boolean gamePause(){
-        //todo: implement
-        this.running = false;
-        logGameAction("Game paused");
-        return true;
-    }
-
-    public boolean gameContinue(){
-        //todo: implement
-        this.running = true;
-        logGameAction("Game continued");
-        return true;
-    }
-
+    /**
+     * Timeline management, continually calls
+     * Minute->Hour->Day
+     */
     public void advanceMinute(){
         this.minute++;
         int contractProgress = 0;
@@ -223,7 +214,6 @@ public class Game {
     }
 
     //region Game control
-
     /**
      * Pause the game for specified time
      * @param milliseconds //time to pause
@@ -282,6 +272,18 @@ public class Game {
         Developer dev = new Developer(upperRankBound);
         this.gameLog.add("Hired "+dev.getName()+".");
         return dev;
+    }
+
+    /**
+     * Adds three developers to the list of
+     * potential developers.
+     * @param upperRankBound maximum initial skill level
+     */
+    public void hireNewDevelopers(int upperRankBound){
+        this.potentialDevelopers.clear();
+        for(int i = 0; i < 3; i++){
+            potentialDevelopers.add(new Developer(upperRankBound));
+        }
     }
 
     /**
@@ -347,8 +349,6 @@ public class Game {
     }
 
     //endregion
-
-
 
 
     //region getter & setter

@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1000.0" styleClass="hbox" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.idledevgame.GameController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1000.0" styleClass="hbox" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.idledevgame.GameController">
     <children>
         <VBox prefHeight="562.0" prefWidth="846.0">
             <children>
@@ -59,7 +50,7 @@
                                                 <Insets />
                                             </HBox.margin>
                                         </Button>
-                                        <Label fx:id="levelCodingSpeed" text="Stufe 1">
+                                        <Label fx:id="levelCodingSpeed_0" text="Stufe 1">
                                             <HBox.margin>
                                                 <Insets left="5.0" />
                                             </HBox.margin>
@@ -69,7 +60,7 @@
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <children>
                                         <Button fx:id="dev_0_upgrade_quality" mnemonicParsing="false" onAction="#upgradeQualityOfCode" styleClass="upgrade-btn" stylesheets="@stylesheet.css" text="Upgrade" />
-                                        <Label fx:id="levelQualityOfCode" text="Stufe 1">
+                                        <Label fx:id="levelQualityOfCode_0" text="Stufe 1">
                                             <HBox.margin>
                                                 <Insets left="5.0" />
                                             </HBox.margin>
@@ -80,12 +71,9 @@
                            <children>
                               <VBox prefHeight="107.0" prefWidth="198.0">
                                  <children>
-                                     <!--
-                                     <TextArea fx:id="dev_0_name" editable="false" prefHeight="132.0" prefWidth="150.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" />
-                                    -->
-                                      <Label fx:id="dev0_name" styleClass="developer-txt" text="Dev0" />
-                                      <Label fx:id="dev0_level" styleClass="developer-txt" text="Dev0_Level" />
-                                      <Label fx:id="dev0_salary" styleClass="developer-txt" text="Dev0_Salary" />
+                                      <Label fx:id="dev_0_name" styleClass="developer-txt" text="Dev0" />
+                                      <Label fx:id="dev_0_level" styleClass="developer-txt" text="Dev0_Level" />
+                                      <Label fx:id="dev_0_salary" styleClass="developer-txt" text="Dev0_Salary" />
                                      <Button mnemonicParsing="false" onAction="#fireDev1" prefHeight="26.0" prefWidth="40.0" styleClass="finish-btn" text="Fire" />
                                  </children>
                               </VBox>
@@ -107,6 +95,7 @@
                         <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="90.66666412353516" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <ImageView fitHeight="115.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -118,12 +107,12 @@
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed1" styleClass="upgrade-btn" text="Upgrade">
+                              <Button fx:id="dev_1_upgrade_codeSpeed" mnemonicParsing="false" onAction="#upgradeCodingSpeed1" styleClass="upgrade-btn" text="Upgrade">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Label fx:id="levelCodingSpeed1" text="Stufe 1">
+                              <Label fx:id="levelCodingSpeed_1" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -132,12 +121,12 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="203.0" layoutY="138.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeQualityOfCode1" styleClass="upgrade-btn" text="Upgrade">
+                              <Button fx:id="dev_1_upgrade_quality" mnemonicParsing="false" onAction="#upgradeQualityOfCode1" styleClass="upgrade-btn" text="Upgrade">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Label fx:id="levelQualityOfCode1" text="Stufe 1">
+                              <Label fx:id="levelQualityOfCode_1" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -146,17 +135,20 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <TextArea editable="false" prefHeight="132.0" prefWidth="150.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" />
-                              <Button mnemonicParsing="false" onAction="#fireDev2" prefHeight="26.0" prefWidth="40.0" styleClass="finish-btn" text="Fire">
-                                 <HBox.margin>
-                                    <Insets top="5.0" />
-                                 </HBox.margin>
-                              </Button>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="dev_1_name" text="Dev1" />
+                                    <Label fx:id="dev_1_level" text="Dev1_Level" />
+                                    <Label fx:id="dev_1_salary" text="Dev1_Salary" />
+                                    <Button mnemonicParsing="false" onAction="#fireDev2" prefHeight="26.0" prefWidth="40.0" styleClass="finish-btn" text="Fire" />
+                                 </children>
+                              </VBox>
                            </children>
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>
                         </HBox>
+                        <ProgressBar fx:id="dev_1_progress" prefWidth="200.0" progress="0.0" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <GridPane fx:id="dev3" alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" visible="true" GridPane.rowIndex="3">
@@ -167,6 +159,7 @@
                      <rowConstraints>
                         <RowConstraints maxHeight="143.19998779296876" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
@@ -179,12 +172,12 @@
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed2" styleClass="upgrade-btn" text="Upgrade">
+                              <Button fx:id="dev_2_upgrade_codeSpeed" mnemonicParsing="false" onAction="#upgradeCodingSpeed2" styleClass="upgrade-btn" text="Upgrade">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Label fx:id="levelCodingSpeed2" text="Stufe 1">
+                              <Label fx:id="levelCodingSpeed_2" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -193,8 +186,8 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeQualityOfCode2" styleClass="upgrade-btn" text="Upgrade" />
-                              <Label fx:id="levelQualityOfCode2" text="Stufe 1">
+                              <Button fx:id="dev_2_upgrade_quality" mnemonicParsing="false" onAction="#upgradeQualityOfCode2" styleClass="upgrade-btn" text="Upgrade" />
+                              <Label fx:id="levelQualityOfCode_2" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -203,17 +196,20 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextArea editable="false" prefHeight="131.0" prefWidth="150.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" />
-                              <Button mnemonicParsing="false" onAction="#fireDev3" prefHeight="26.0" prefWidth="45.0" styleClass="finish-btn" text="Fire">
-                                 <HBox.margin>
-                                    <Insets top="5.0" />
-                                 </HBox.margin>
-                              </Button>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="dev_2_name" text="Dev2" />
+                                    <Label fx:id="dev_2_level" text="Dev2_Level" />
+                                    <Label fx:id="dev_2_salary" text="Dev2_Salary" />
+                                    <Button mnemonicParsing="false" onAction="#fireDev3" prefHeight="26.0" prefWidth="45.0" styleClass="finish-btn" text="Fire" />
+                                 </children>
+                              </VBox>
                            </children>
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>
                         </HBox>
+                        <ProgressBar fx:id="dev_2_progress" prefWidth="200.0" progress="0.0" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <GridPane fx:id="dev4" alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="228.0" stylesheets="@stylesheet.css" visible="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -224,6 +220,7 @@
                      <rowConstraints>
                         <RowConstraints maxHeight="142.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
@@ -236,12 +233,12 @@
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeCodingSpeed3" styleClass="upgrade-btn" text="Upgrade">
+                              <Button fx:id="dev_3_upgrade_codeSpeed" mnemonicParsing="false" onAction="#upgradeCodingSpeed3" styleClass="upgrade-btn" text="Upgrade">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Label fx:id="levelCodingSpeed3" text="Stufe 1">
+                              <Label fx:id="levelCodingSpeed_3" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -250,8 +247,8 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#upgradeQualityOfCode3" styleClass="upgrade-btn" text="Upgrade" />
-                              <Label fx:id="levelQualityOfCode3" text="Stufe 1">
+                              <Button fx:id="dev_3_upgrade_quality" mnemonicParsing="false" onAction="#upgradeQualityOfCode3" styleClass="upgrade-btn" text="Upgrade" />
+                              <Label fx:id="levelQualityOfCode_3" text="Stufe 1">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -260,17 +257,20 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextArea editable="false" prefHeight="131.0" prefWidth="150.0" styleClass="developer-txt" stylesheets="@stylesheet.css" text="Dominik&#10;150 IMC/Tag&#10;Junior Dev" />
-                              <Button mnemonicParsing="false" onAction="#fireDev4" prefHeight="26.0" prefWidth="45.0" styleClass="finish-btn" text="Fire">
-                                 <HBox.margin>
-                                    <Insets top="5.0" />
-                                 </HBox.margin>
-                              </Button>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="dev_3_name" text="Dev3" />
+                                    <Label fx:id="dev_3_level" text="Dev3_Level" />
+                                    <Label fx:id="dev_3_salary" text="Dev3_Salary" />
+                                    <Button mnemonicParsing="false" onAction="#fireDev4" prefHeight="26.0" prefWidth="45.0" styleClass="finish-btn" text="Fire" />
+                                 </children>
+                              </VBox>
                            </children>
                            <GridPane.margin>
                               <Insets top="10.0" />
                            </GridPane.margin>
                         </HBox>
+                        <ProgressBar fx:id="dev_3_progress" prefWidth="200.0" progress="0.0" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <HBox prefHeight="100.0" prefWidth="200.0">

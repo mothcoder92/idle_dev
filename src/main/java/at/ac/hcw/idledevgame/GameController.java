@@ -30,179 +30,188 @@ import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.awt.*;
 import java.io.IOException;
 
 public class GameController {
 
-
-
     //Game variables
     private Game game = new Game("Macrosoft", 1000);
     private Timeline timeline;
+    private int newestHire = 0;
 
     //region FXML properties
-    @FXML
-    public Label dev0_name;
-    @FXML
-    public Label dev0_level;
-    @FXML
-    public Label dev0_salary;
-    @FXML
-    public Button dev_0_upgrade_quality;
-    @FXML
-    public Button dev_0_upgrade_codeSpeed;
-    @FXML
-    public ProgressBar dev_0_progress;
-    @FXML
-    public Label dev_0_lastWork;
-    @FXML
-    private Label currentDay;
-    @FXML
-    private Label currentCash;
-    @FXML
-    private TextField CompName;
-    @FXML
-    private Label levelCodingSpeed;
-    @FXML
-    private Label levelQualityOfCode;
-    @FXML
-    private Label levelCodingSpeed1;
-    @FXML
-    private Label levelQualityOfCode1;
-    @FXML
-    private Label levelCodingSpeed2;
-    @FXML
-    private Label levelQualityOfCode2;
-    @FXML
-    private Label levelCodingSpeed3;
-    @FXML
-    private Label levelQualityOfCode3;
-    @FXML
-    private GridPane dev1;
-    @FXML
-    private GridPane dev2;
-    @FXML
-    private GridPane dev3;
-    @FXML
-    private GridPane dev4;
-    @FXML
-    public TextField contract_title;
-    @FXML
-    public TextArea contract_description;
-    @FXML
-    public Label contract_lines;
-    @FXML
-    public Label contract_payout;
-    @FXML
-    public Button contract_finish;
-
+    //region Dev0
+    @FXML public Label dev_0_name;
+    @FXML public Label dev_0_level;
+    @FXML public Label dev_0_salary;
+    @FXML public Button dev_0_upgrade_quality;
+    @FXML public Button dev_0_upgrade_codeSpeed;
+    @FXML private Label levelCodingSpeed_0;
+    @FXML private Label levelQualityOfCode_0;
+    @FXML public ProgressBar dev_0_progress;
+    @FXML public Label dev_0_lastWork;
+    @FXML private Tooltip dev_0_upgradeCodingSpeedTooltip = new Tooltip();
+    @FXML private Tooltip dev_0_upgradeQualityOfCodeTooltip = new Tooltip();
+    //endregion
+    //region Dev1
+    @FXML public Label dev_1_name;
+    @FXML public Label dev_1_level;
+    @FXML public Label dev_1_salary;
+    @FXML public Button dev_1_upgrade_quality;
+    @FXML public Button dev_1_upgrade_codeSpeed;
+    @FXML private Label levelCodingSpeed_1;
+    @FXML private Label levelQualityOfCode_1;
+    @FXML public ProgressBar dev_1_progress;
+    @FXML public Label dev_1_lastWork;
+    @FXML private Tooltip dev_1_upgradeCodingSpeedTooltip = new Tooltip();
+    @FXML private Tooltip dev_1_upgradeQualityOfCodeTooltip = new Tooltip();
+    //endregion
+    //region Dev2
+    @FXML public Label dev_2_name;
+    @FXML public Label dev_2_level;
+    @FXML public Label dev_2_salary;
+    @FXML public Button dev_2_upgrade_quality;
+    @FXML public Button dev_2_upgrade_codeSpeed;
+    @FXML private Label levelCodingSpeed_2;
+    @FXML private Label levelQualityOfCode_2;
+    @FXML public ProgressBar dev_2_progress;
+    @FXML public Label dev_2_lastWork;
+    @FXML private Tooltip dev_2_upgradeCodingSpeedTooltip = new Tooltip();
+    @FXML private Tooltip dev_2_upgradeQualityOfCodeTooltip = new Tooltip();
+    //endregion
+    //region Dev3
+    @FXML public Label dev_3_name;
+    @FXML public Label dev_3_level;
+    @FXML public Label dev_3_salary;
+    @FXML public Button dev_3_upgrade_quality;
+    @FXML public Button dev_3_upgrade_codeSpeed;
+    @FXML private Label levelCodingSpeed_3;
+    @FXML private Label levelQualityOfCode_3;
+    @FXML public ProgressBar dev_3_progress;
+    @FXML public Label dev_3_lastWork;
+    @FXML private Tooltip dev_3_upgradeCodingSpeedTooltip = new Tooltip();
+    @FXML private Tooltip dev_3_upgradeQualityOfCodeTooltip = new Tooltip();
     //endregion
 
-    @FXML
-    private Tooltip dev_0_upgradeCodingSpeedTooltip = new Tooltip();
-    @FXML
-    private Tooltip dev_0_upgradeQualityOfCodeTooltip = new Tooltip();
+    //Game UI Labels
+    @FXML private Label currentDay;
+    @FXML private Label currentCash;
+    @FXML private TextField CompName;
 
-    @FXML
-    protected void upgradeCodingSpeed() {
-        Developer dev0 = game.developers.get(0);
-        if(game.currentCapital.get() > dev0.getcodingSpeed().getNextUpgradeCost()){
-            dev0.upgradeCodingSpeed();
+    //Game UI components
+    @FXML private GridPane dev1;
+    @FXML private GridPane dev2;
+    @FXML private GridPane dev3;
+    @FXML private GridPane dev4;
+
+    //Contract fields
+    @FXML public TextField contract_title;
+    @FXML public TextArea contract_description;
+    @FXML public Label contract_lines;
+    @FXML public Label contract_payout;
+    @FXML public Button contract_finish;
+    //endregion
+
+    //Grouping properties
+    private List<Label> developerNames;
+    private List<Label> developerTitles;
+    private List<Label> developerSalaries;
+    private List<Label> upgradeCodingSpeed;
+    private List<Label> upgradeQualityOfCode;
+    private List<GridPane> developerGrids;
+
+    //region Code
+    @FXML protected void upgradeCodingSpeed() { upgradeCodingSpeedHelper(0);}
+    @FXML protected void upgradeQualityOfCode() { upgradeSuccessRateHelper(0);}
+    @FXML protected void upgradeCodingSpeed1() { upgradeCodingSpeedHelper(1);}
+    @FXML protected void upgradeQualityOfCode1() { upgradeSuccessRateHelper(1);}
+    @FXML protected void upgradeCodingSpeed2() { upgradeCodingSpeedHelper(2);}
+    @FXML protected void upgradeQualityOfCode2() { upgradeSuccessRateHelper(2);}
+    @FXML protected void upgradeCodingSpeed3() { upgradeCodingSpeedHelper(3);}
+    @FXML protected void upgradeQualityOfCode3() { upgradeSuccessRateHelper(3);}
+
+    /**
+     * Helper to call the events tied to the button
+     * of developer number x
+     * @param devNumber x
+     */
+    protected void upgradeCodingSpeedHelper(int devNumber){
+        Developer dev = game.developers.get(devNumber);
+        if(game.currentCapital.get() > dev.getcodingSpeed().getNextUpgradeCost()){
+            dev.upgradeCodingSpeed();
         }
         else{
             flashLabel(currentCash);
         }
     }
 
-    @FXML
-    protected void upgradeQualityOfCode() {
-        Developer dev0 = game.developers.get(0);
-        if(game.currentCapital.get() > dev0.getsuccessRate().getNextUpgradeCost()){
-            dev0.upgradeSuccessRate();
+    /**
+     * Helper to call the events tied to the button
+     * of developer number x
+     * @param devNumber x
+     */
+    protected void upgradeSuccessRateHelper(int devNumber){
+        Developer dev = game.developers.get(devNumber);
+        if(game.currentCapital.get() > dev.getsuccessRate().getNextUpgradeCost()){
+            dev.upgradeSuccessRate();
         }
         else{
             flashLabel(currentCash);
         }
     }
 
-    @FXML
-    protected void upgradeCodingSpeed1() {
-        int lvl = Integer.parseInt(levelCodingSpeed1.getText().substring(6));
-        lvl++;
-        levelCodingSpeed1.setText("Stufe " + lvl);
-    }
-
-    @FXML
-    protected void upgradeQualityOfCode1() {
-        int lvl = Integer.parseInt(levelQualityOfCode1.getText().substring(6));
-        lvl++;
-        levelQualityOfCode1.setText("Stufe " + lvl);
-    }
-
-    @FXML
-    protected void upgradeCodingSpeed2() {
-        int lvl = Integer.parseInt(levelCodingSpeed2.getText().substring(6));
-        lvl++;
-        levelCodingSpeed2.setText("Stufe " + lvl);
-    }
-
-    @FXML
-    protected void upgradeQualityOfCode2() {
-        int lvl = Integer.parseInt(levelQualityOfCode2.getText().substring(6));
-        lvl++;
-        levelQualityOfCode2.setText("Stufe " + lvl);
-    }
-
-    @FXML
-    protected void upgradeCodingSpeed3() {
-        int lvl = Integer.parseInt(levelCodingSpeed3.getText().substring(6));
-        lvl++;
-        levelCodingSpeed3.setText("Stufe " + lvl);
-    }
-
-    @FXML
-    protected void upgradeQualityOfCode3() {
-        int lvl = Integer.parseInt(levelQualityOfCode3.getText().substring(6));
-        lvl++;
-        levelQualityOfCode3.setText("Stufe " + lvl);
-    }
 
     @FXML
     protected void hireNewDev() throws IOException {
         pauseGame();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hire-window-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        //pass game object to new controller
+        hireController controller = fxmlLoader.getController();
+        controller.setGameObject(game);
+        controller.initUI();
+
+        //set callback
+        controller.setOnHireFinished(() -> {
+            //show new Dev
+            developerGrids.get(game.developers.size()-1).setVisible(true);
+            //bindings
+            bindNewDeveloper(game.developers.getSize()-1);
+            //turn visible
+            //update UI?
+            resumeGame();
+        });
+
+        //set scene
         Stage stage = new Stage();
         stage.setTitle("Hire Developer");
-        stage.setScene(new Scene(fxmlLoader.load(), 700, 300));
+        stage.setScene(new Scene(root, 700, 300));
         stage.show();
 
         //If window is closed game will be fortgesetzt
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                resumeGame();
+
             }
         });
+    }
 
-//        if (!dev1.isVisible()) {
-//            dev1.setVisible(true);
-//        } else if (!dev2.isVisible()) {
-//            dev2.setVisible(true);
-//        } else if (!dev3.isVisible()) {
-//            dev3.setVisible(true);
-//        } else {
-//            dev4.setVisible(true);
-//        }
-//        resumeGame();
-//
-
-        // pause,
-        // dann kommt fenster
-        // spieler wählt liste von devs
-        // update developer liste von game object
-        // udate ui
+    public void onCloseRequest(){
+        //show new Dev
+        //developerNames.get(game.developers.size()-1).setVisible(false);
+        //bindings
+        //bindNewDeveloper(game.developers.getSize()-1);
+        //turn visible
+        //update UI?
+        //resumeGame();
+        //todo: happens only when x is pressed on window, what to do?
     }
 
     @FXML
@@ -232,6 +241,8 @@ public class GameController {
         //get new contract
         game.currentContract.set(new Contract(2));
         //update ui
+        //todo: cycle through 10 contracts to win game
+        //todo: show win popup
     }
 
     private void initUI(){
@@ -268,6 +279,22 @@ public class GameController {
     @FXML
     private void initialize(){
 
+        //debugging
+        //System.out.println("hire_0_name = " + dev_0_name);
+        //System.out.println("hire_1_name = " + dev_1_name);
+        //System.out.println("hire_2_name = " + dev_2_name);
+        //System.out.println("hire_3_name = " + dev_3_name);
+
+        //Initialize Lists
+        upgradeCodingSpeed = List.of(levelCodingSpeed_0, levelCodingSpeed_1,
+                levelCodingSpeed_2, levelCodingSpeed_3);
+        upgradeQualityOfCode = List.of(levelQualityOfCode_0, levelQualityOfCode_1,
+                levelQualityOfCode_2, levelQualityOfCode_3);
+        developerNames = List.of(dev_0_name, dev_1_name, dev_2_name, dev_3_name);
+        developerTitles = List.of(dev_0_level, dev_1_level, dev_2_level, dev_3_level );
+        developerSalaries = List.of(dev_0_salary, dev_1_salary, dev_2_salary, dev_3_salary);
+        developerGrids = List.of(dev1, dev2, dev3, dev4);
+
         //UI fields
         initUI();
         //Set company name
@@ -277,17 +304,15 @@ public class GameController {
         //Set starting day
         currentDay.textProperty().bind(game.currentDay.asString());
 
-        //Add starting developer
+        //Add bindings for starting developer
         if(!game.developers.isEmpty()){
-            Developer dev0 = game.developers.getFirst();
-
-            dev0_name.textProperty().bind(dev0.getDeveloperNameProperty());
-            dev0_salary.textProperty().bind(dev0.getSalaryProperty().asString());
-            dev0_level.textProperty().bind(dev0.getDeveloperTitle());
-
-            levelCodingSpeed.textProperty().bind(dev0.getCodingSpeedProperty().asString());
-            levelQualityOfCode.textProperty().bind(dev0.getSuccessRateProperty().asString());
+            bindNewDeveloper(0);    //position 0
         }
+
+        //Hide other (empty) Devs
+        dev2.setVisible(false);
+        dev3.setVisible(false);
+        dev4.setVisible(false);
 
         //Initialize timeline
         timeline = new Timeline(
@@ -305,28 +330,24 @@ public class GameController {
         timeline.play();
     }
 
-    @FXML
-    private void updateContracts(){
-        //update developers fields
-        //update contract fields
+    private void bindNewDeveloper(int position){
+        Developer dev = game.developers.get(position);
+        developerNames.get(position).textProperty().bind(dev.getDeveloperNameProperty());
+        developerTitles.get(position).textProperty().bind(dev.getDeveloperTitle());
+        developerSalaries.get(position).textProperty().bind(dev.getSalaryProperty().asString());
+        upgradeCodingSpeed.get(position).textProperty().bind(dev.getCodingSpeedProperty().asString());
+        upgradeQualityOfCode.get(position).textProperty().bind(dev.getSuccessRateProperty().asString());
 
-
+        //dev_0_name.textProperty().bind(dev0.getDeveloperNameProperty());
+        //dev_0_salary.textProperty().bind(dev0.getSalaryProperty().asString());
+        //dev_0_level.textProperty().bind(dev0.getDeveloperTitle());
+        //levelCodingSpeed_0.textProperty().bind(dev0.getCodingSpeedProperty().asString());
+        //levelQualityOfCode_0.textProperty().bind(dev0.getSuccessRateProperty().asString());
     }
 
-    @FXML
-    private void updateDevelopers(){
-        //increase stat/whatever
-        //update values in game
-        //refresh UI?
 
-    }
+    //endregion Code
 
-    @FXML
-    private void progressOneHour(){
-        //check dev progress against contract
-        //check for contract finished
-
-    }
 
     //region Animations
     @FXML

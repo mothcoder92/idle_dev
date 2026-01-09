@@ -1,12 +1,16 @@
 package classes;
 
 import javafx.beans.property.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/**
+ * Developer is an object representing on worker.
+ * The Game object keeps track of developers and
+ * their stats through gameplay.
+ */
 public class Developer {
 
     //Properties
@@ -52,7 +56,7 @@ public class Developer {
 
     /**
      * Public method to calculate successes
-     * @return number of successes
+     * @return number of successes as int.
      */
     public int work(int difficulty){
         int numberOfLinesWritten = this.codingSpeed.getRank().get() * 100;
@@ -64,11 +68,17 @@ public class Developer {
         return result;
     }
 
+    /**
+     * Upgrade coding speed attribute.
+     */
     public void upgradeCodingSpeed(){
         this.codingSpeed.upgradeAttribute();
         updateDeveloper();
     }
 
+    /**
+     * Upgrade success rate attribute.
+     */
     public void upgradeSuccessRate(){
         this.successRate.upgradeAttribute();
         updateDeveloper();
@@ -76,7 +86,7 @@ public class Developer {
 
     /**
      * Log action
-     * @param log the thing that happened
+     * @param log string representing action taken
      */
     private void logDevAction(String log){
         this.devLog.add(log);
@@ -94,9 +104,13 @@ public class Developer {
      * Initialize level as sum of ranks
      */
     private void calculateLevel() {
+
         this.level = codingSpeed.getRank().get() +  successRate.getRank().get();
     }
 
+    /**
+     * Set developer title based on rank.
+     */
     private void checkTitle(){
         SimpleStringProperty result = new SimpleStringProperty();
         if(level < 6){
