@@ -130,7 +130,9 @@ public class GameController {
     private List<Label> developerTitles;
     private List<Label> developerSalaries;
     private List<Label> upgradeCodingSpeed;
+    private List<Label> costCodingSpeed;
     private List<Label> upgradeQualityOfCode;
+    private List<Label> costQualityOfCode;
     private List<GridPane> developerGrids;
     private List<ProgressBar> developerProgressBars;
     private List<Label> developerLastWorkLabels;
@@ -152,7 +154,7 @@ public class GameController {
      */
     protected void upgradeCodingSpeedHelper(int devNumber){
         Developer dev = game.developers.get(devNumber);
-        if(game.currentCapital.get() > dev.getcodingSpeed().getNextUpgradeCost()){
+        if(game.currentCapital.get() > dev.getcodingSpeed().getNextUpgradeCost().get()){
             dev.upgradeCodingSpeed();
         }
         else{
@@ -167,7 +169,7 @@ public class GameController {
      */
     protected void upgradeSuccessRateHelper(int devNumber){
         Developer dev = game.developers.get(devNumber);
-        if(game.currentCapital.get() > dev.getsuccessRate().getNextUpgradeCost()){
+        if(game.currentCapital.get() > dev.getsuccessRate().getNextUpgradeCost().get()){
             dev.upgradeSuccessRate();
         }
         else{
@@ -303,6 +305,8 @@ public class GameController {
         developerTitles = List.of(dev_0_level, dev_1_level, dev_2_level, dev_3_level );
         developerSalaries = List.of(dev_0_salary, dev_1_salary, dev_2_salary, dev_3_salary);
         developerGrids = List.of(dev1, dev2, dev3, dev4);
+        costCodingSpeed = List.of(dev_0_cost_codeSpeed, dev_1_cost_codeSpeed, dev_2_cost_codeSpeed, dev_3_cost_codeSpeed);
+        costQualityOfCode = List.of(dev_0_cost_quality, dev_1_cost_quality, dev_2_cost_quality, dev_3_cost_quality);
 
         developerProgressBars = List.of(dev_0_progress, dev_1_progress, dev_2_progress, dev_3_progress);
         developerLastWorkLabels = List.of(dev_0_lastWork, dev_1_lastWork, dev_2_lastWork, dev_3_lastWork);
@@ -349,6 +353,9 @@ public class GameController {
         developerSalaries.get(position).textProperty().bind(dev.getSalaryProperty().asString());
         upgradeCodingSpeed.get(position).textProperty().bind(dev.getCodingSpeedProperty().asString());
         upgradeQualityOfCode.get(position).textProperty().bind(dev.getSuccessRateProperty().asString());
+        costCodingSpeed.get(position).textProperty().bind(dev.getcodingSpeed().getNextUpgradeCost().asString());
+        costQualityOfCode.get(position).textProperty().bind(dev.getsuccessRate().getNextUpgradeCost().asString());
+
 
         developerProgressBars.get(position).progressProperty().bind(dev.getProgress());
         developerLastWorkLabels.get(position).textProperty().bind(dev.getWrittenLinesInLastWorkstepProperty().asString());

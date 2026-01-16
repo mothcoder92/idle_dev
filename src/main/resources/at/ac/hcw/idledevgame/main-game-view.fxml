@@ -54,7 +54,7 @@
                         <ProgressBar fx:id="dev_0_progress" prefWidth="200.0" progress="0.0" styleClass="progress-color" GridPane.rowIndex="3" />
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                     <children>
-                                        <Label fx:id="levelCodingSpeed_0" text="1">
+                                        <Label fx:id="levelCodingSpeed_0" prefWidth="20.0" text="1">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
@@ -64,12 +64,12 @@
                                                 <Insets />
                                             </HBox.margin>
                                         </Button>
-                              <Label fx:id="dev_0_cost_codeSpeed" text="cost:">
+                              <Label text="cost:">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="120">
+                              <Label fx:id="dev_0_cost_codeSpeed" text="120">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -78,18 +78,18 @@
                                 </HBox>
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <children>
-                                        <Label fx:id="levelQualityOfCode_0" text="1">
+                                        <Label fx:id="levelQualityOfCode_0" prefWidth="20.0" text="1">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
                                         </Label>
                                         <Button fx:id="dev_0_upgrade_quality" mnemonicParsing="false" onAction="#upgradeQualityOfCode" styleClass="upgrade-btn" stylesheets="@stylesheet.css" text="Upgrade" />
-                              <Label fx:id="dev_0_cost_quality" text="cost:">
+                              <Label text="cost:">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="320">
+                              <Label fx:id="dev_0_cost_quality" text="320">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -139,7 +139,7 @@
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <children>
-                              <Label fx:id="levelCodingSpeed_1" text="1">
+                              <Label fx:id="levelCodingSpeed_1" prefWidth="20.0" text="1">
                                  <HBox.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
@@ -149,12 +149,12 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                               <Label fx:id="dev_1_cost_codeSpeed" text="cost:">
+                               <Label text="cost:">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
                                </Label>
-                               <Label text="320">
+                               <Label fx:id="dev_1_cost_codeSpeed" text="320">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
@@ -163,7 +163,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="203.0" layoutY="138.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <Label fx:id="levelQualityOfCode_1" text="1">
+                              <Label fx:id="levelQualityOfCode_1" prefWidth="20.0" text="1">
                                  <HBox.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
@@ -173,12 +173,12 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                               <Label fx:id="dev_1_cost_quality" text="cost:">
+                               <Label text="cost:">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
                                </Label>
-                               <Label text="320">
+                               <Label fx:id="dev_1_cost_quality" text="320">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
@@ -229,7 +229,7 @@
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="levelCodingSpeed_2" text="1">
+                              <Label fx:id="levelCodingSpeed_2" prefWidth="20.0" text="1">
                                  <HBox.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
@@ -239,12 +239,12 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Label fx:id="dev_2_cost_codeSpeed" text="cost:">
+                              <Label text="cost:">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="320">
+                              <Label fx:id="dev_2_cost_codeSpeed" text="320">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -253,18 +253,18 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <children>
-                              <Label fx:id="levelQualityOfCode_2" text="1">
+                              <Label fx:id="levelQualityOfCode_2" prefWidth="20.0" text="1">
                                  <HBox.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
                               </Label>
                               <Button fx:id="dev_2_upgrade_quality" mnemonicParsing="false" onAction="#upgradeQualityOfCode2" styleClass="upgrade-btn" text="Upgrade" />
-                               <Label fx:id="dev_2_cost_quality" text="cost:">
+                               <Label text="cost:">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
                                </Label>
-                               <Label text="320">
+                               <Label fx:id="dev_2_cost_quality" text="320">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
@@ -315,7 +315,7 @@
                         <Label text="Quality of Code" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="levelCodingSpeed_3" text="1">
+                              <Label fx:id="levelCodingSpeed_3" prefWidth="20.0" text="1">
                                  <HBox.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
@@ -325,12 +325,12 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                               <Label fx:id="dev_3_cost_codeSpeed" text="cost:">
+                               <Label text="cost:">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
                                </Label>
-                               <Label text="120">
+                               <Label fx:id="dev_3_cost_codeSpeed" text="120">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
@@ -339,18 +339,18 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <children>
-                              <Label fx:id="levelQualityOfCode_3" text="1">
+                              <Label fx:id="levelQualityOfCode_3" prefWidth="20.0" text="1">
                                  <HBox.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
                               </Label>
                               <Button fx:id="dev_3_upgrade_quality" mnemonicParsing="false" onAction="#upgradeQualityOfCode3" styleClass="upgrade-btn" text="Upgrade" />
-                               <Label fx:id="dev_3_cost_quality" text="cost:">
+                               <Label text="cost:">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>
                                </Label>
-                               <Label text="320">
+                               <Label fx:id="dev_3_cost_quality" text="320">
                                    <HBox.margin>
                                        <Insets left="5.0" />
                                    </HBox.margin>

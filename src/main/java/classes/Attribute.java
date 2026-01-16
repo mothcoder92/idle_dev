@@ -13,7 +13,7 @@ public class Attribute {
 
     private final String name;
     private IntegerProperty rank = new SimpleIntegerProperty(0);
-    private int nextUpgradeCost;
+    private IntegerProperty nextUpgradeCost = new SimpleIntegerProperty(0);
 
     /**
      * Default Constructor
@@ -23,7 +23,7 @@ public class Attribute {
     public Attribute(String name, int rank) {
         this.name = name;
         this.rank.set(rank);
-        this.nextUpgradeCost = getUpgradeCost();
+        this.nextUpgradeCost.set(getUpgradeCost());
     }
 
     /**
@@ -31,7 +31,7 @@ public class Attribute {
      */
     public void upgradeAttribute() {
         this.rank.set(rank.get()+1);
-        this.nextUpgradeCost = getUpgradeCost();
+        this.nextUpgradeCost.set(getUpgradeCost());
     }
 
     /**
@@ -48,6 +48,6 @@ public class Attribute {
     public String getName() {return name;}
     public IntegerProperty getRank() {return this.rank;}
     public void setRank(int rank) {this.rank.set(rank);}
-    public int getNextUpgradeCost() {return this.nextUpgradeCost;}
+    public IntegerProperty getNextUpgradeCost() {return this.nextUpgradeCost;}
 
 }
