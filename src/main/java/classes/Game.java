@@ -211,6 +211,7 @@ public class Game {
         }
 
         this.currentCapital.set(this.currentCapital.get() - totalSalaries);
+        //Test
     }
 
     public void addTotalContractsCompleted() {
