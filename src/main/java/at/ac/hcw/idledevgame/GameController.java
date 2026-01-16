@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -131,6 +132,8 @@ public class GameController {
     private List<Label> upgradeCodingSpeed;
     private List<Label> upgradeQualityOfCode;
     private List<GridPane> developerGrids;
+    private List<ProgressBar> developerProgressBars;
+    private List<Label> developerLastWorkLabels;
 
     //region Code
     @FXML protected void upgradeCodingSpeed() { upgradeCodingSpeedHelper(0);}
@@ -248,7 +251,7 @@ public class GameController {
         //todo: show win popup
     }
 
-    private void initUI(){
+     private void initUI(){
         Tooltip.install(dev_0_upgrade_codeSpeed, dev_0_upgradeCodingSpeedTooltip);
         Tooltip.install(dev_0_upgrade_quality, dev_0_upgradeQualityOfCodeTooltip);
 
@@ -264,12 +267,7 @@ public class GameController {
             );
         });
 
-        //bind progress bar to dev value
-        dev_0_progress.progressProperty().bind(game.developers.get(0).getProgress());
-        //todo: add for Dev1-3
-        //bind last work
-        dev_0_lastWork.textProperty().bind(game.developers.get(0).getWrittenLinesInLastWorkstepProperty().asString());
-        //todo: add for Dev1-3
+        bindDeveloperProgress();
 
         //bind contract fields
         contract_title.textProperty().bind(game.getContractProperty().flatMap(Contract::getContractNameProperty));
@@ -278,6 +276,12 @@ public class GameController {
         contract_payout.textProperty().bind(game.getContractProperty().flatMap(Contract::getContractPayoutProperty));
         contract_finish.disableProperty().bind(game.getContractProperty().flatMap(Contract::isCompletedProperty));
 
+    }
+
+    private void bindDeveloperProgress() {
+        for (int i = 0; i < game.developers.size(); i++) {
+            bindNewDeveloper(i);
+        }
     }
 
     //Initialize UI with game values
@@ -299,6 +303,9 @@ public class GameController {
         developerTitles = List.of(dev_0_level, dev_1_level, dev_2_level, dev_3_level );
         developerSalaries = List.of(dev_0_salary, dev_1_salary, dev_2_salary, dev_3_salary);
         developerGrids = List.of(dev1, dev2, dev3, dev4);
+
+        developerProgressBars = List.of(dev_0_progress, dev_1_progress, dev_2_progress, dev_3_progress);
+        developerLastWorkLabels = List.of(dev_0_lastWork, dev_1_lastWork, dev_2_lastWork, dev_3_lastWork);
 
         //UI fields
         initUI();
@@ -342,6 +349,10 @@ public class GameController {
         developerSalaries.get(position).textProperty().bind(dev.getSalaryProperty().asString());
         upgradeCodingSpeed.get(position).textProperty().bind(dev.getCodingSpeedProperty().asString());
         upgradeQualityOfCode.get(position).textProperty().bind(dev.getSuccessRateProperty().asString());
+
+        developerProgressBars.get(position).progressProperty().bind(dev.getProgress());
+        developerLastWorkLabels.get(position).textProperty().bind(dev.getWrittenLinesInLastWorkstepProperty().asString());
+
     }
 
 
