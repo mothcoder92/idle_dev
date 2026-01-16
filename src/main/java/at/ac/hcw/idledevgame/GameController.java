@@ -39,7 +39,7 @@ import java.io.IOException;
 public class GameController {
 
     //Game variables
-    private Game game = new Game("Macrosoft", 1000);
+    private Game game = new Game("Idle Macrop", 2000);
     private Timeline timeline;
     private int newestHire = 0;
 
@@ -184,7 +184,8 @@ public class GameController {
             //bindings
             bindNewDeveloper(game.developers.getSize()-1);
             //turn visible
-            //update UI?
+            //update daily costs
+            //todo: update daily cost
             resumeGame();
         });
 
@@ -198,40 +199,34 @@ public class GameController {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-
+                //todo: happens only when x is pressed on window, what to do?
+                //todo: resumeGame?
             }
         });
-    }
-
-    public void onCloseRequest(){
-        //show new Dev
-        //developerNames.get(game.developers.size()-1).setVisible(false);
-        //bindings
-        //bindNewDeveloper(game.developers.getSize()-1);
-        //turn visible
-        //update UI?
-        //resumeGame();
-        //todo: happens only when x is pressed on window, what to do?
     }
 
     @FXML
     protected void fireDev1() {
         dev1.setVisible(false);
+        //todo: remove from game object
     }
 
     @FXML
     protected void fireDev2() {
         dev2.setVisible(false);
+        //todo: remove from game object
     }
 
     @FXML
     protected void fireDev3() {
         dev3.setVisible(false);
+        //todo: remove from game object
     }
 
     @FXML
     protected void fireDev4() {
         dev4.setVisible(false);
+        //todo: remove from game object
     }
 
     @FXML
@@ -263,8 +258,10 @@ public class GameController {
 
         //bind progress bar to dev value
         dev_0_progress.progressProperty().bind(game.developers.get(0).getProgress());
+        //todo: add for Dev1-3
         //bind last work
         dev_0_lastWork.textProperty().bind(game.developers.get(0).getWrittenLinesInLastWorkstepProperty().asString());
+        //todo: add for Dev1-3
 
         //bind contract fields
         contract_title.textProperty().bind(game.getContractProperty().flatMap(Contract::getContractNameProperty));
@@ -337,12 +334,6 @@ public class GameController {
         developerSalaries.get(position).textProperty().bind(dev.getSalaryProperty().asString());
         upgradeCodingSpeed.get(position).textProperty().bind(dev.getCodingSpeedProperty().asString());
         upgradeQualityOfCode.get(position).textProperty().bind(dev.getSuccessRateProperty().asString());
-
-        //dev_0_name.textProperty().bind(dev0.getDeveloperNameProperty());
-        //dev_0_salary.textProperty().bind(dev0.getSalaryProperty().asString());
-        //dev_0_level.textProperty().bind(dev0.getDeveloperTitle());
-        //levelCodingSpeed_0.textProperty().bind(dev0.getCodingSpeedProperty().asString());
-        //levelQualityOfCode_0.textProperty().bind(dev0.getSuccessRateProperty().asString());
     }
 
 
@@ -352,6 +343,7 @@ public class GameController {
     //region Animations
     @FXML
     private void flashLabel(Label label){
+        //todo: disable button
         final Color originalColor = (Color) label.getTextFill();
         final Color flashColor = Color.RED;
 

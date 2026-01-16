@@ -61,6 +61,11 @@ public class hireController {
 
         ((Stage) hire_0_btn.getScene().getWindow()).close();
     }
+
+    /**
+     * Add newly hired Dev to the gameObject and
+     * fire callback to notify gameController
+     */
     @FXML protected void hire_1_btn_click(){
         game.developers.get().add(game.potentialDevelopers.get(1));
 
@@ -116,8 +121,4 @@ public class hireController {
             qualityLabels.get(i).textProperty().bind(dev.getSuccessRateProperty().asString());
         }
     }
-
-
-
-
 }

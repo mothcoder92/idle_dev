@@ -15,8 +15,8 @@ import java.util.Random;
 public class Game {
 
     //region local variables
-    private StringProperty companyName = new SimpleStringProperty("Macrosoft Inc.");
-    private IntegerProperty startingCapital = new SimpleIntegerProperty(5000);
+    private StringProperty companyName = new SimpleStringProperty("Idle Macrop.");
+    private IntegerProperty startingCapital = new SimpleIntegerProperty(5001);
     //endregion
 
     //region game time
@@ -27,17 +27,17 @@ public class Game {
     //endregion
 
     //region global variables
-    public Department firstOffice;
+    public Department firstOffice; //not yet implemented in MVP
     public ObjectProperty<Contract> currentContract = new SimpleObjectProperty<Contract>();
     public IntegerProperty currentCapital = new SimpleIntegerProperty(0);
     public IntegerProperty currentDay = new SimpleIntegerProperty(1);
     public List<String> gameLog = new ArrayList<>();
-    public boolean running = false;
+    public boolean running = false; //for console
     public IntegerProperty totalContractsCompleted = new SimpleIntegerProperty(0);
     //endregion
 
     //region development variables
-    public List<Exception> errors = new ArrayList<>();
+    public List<Exception> errors = new ArrayList<>(); //for debugging
     public ListProperty<Developer> developers =
             new SimpleListProperty<Developer>(
                     FXCollections.observableArrayList()
@@ -198,6 +198,7 @@ public class Game {
     }
 
     public void addTotalContractsCompleted(){
+
         this.totalContractsCompleted.set(totalContractsCompleted.get()+1);
     }
 
@@ -307,6 +308,10 @@ public class Game {
         this.gameLog.add("Final day: "+this.currentDay);
     }
 
+    /***
+     * Add log information to logging List
+     * @param action the thing that happened
+     */
     private void logGameAction(String action){
         this.gameLog.add("Day " + currentDay + ": " + action);
     }

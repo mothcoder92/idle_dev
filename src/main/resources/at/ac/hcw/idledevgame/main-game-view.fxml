@@ -336,15 +336,15 @@
                <children>
                   <HBox prefHeight="30.0" prefWidth="226.0">
                      <children>
-                        <TextField fx:id="contract_title" alignment="CENTER" prefHeight="36.0" prefWidth="173.0" styleClass="title-txt" text="Auftrag 1" />
-                        <Button fx:id="contract_finish" mnemonicParsing="false" onAction="#completeContract" prefHeight="36.0" prefWidth="48.0" styleClass="finish-btn" stylesheets="@stylesheet.css" text="Finish" />
+                        <TextField fx:id="contract_title" alignment="CENTER" prefHeight="39.0" prefWidth="224.0" styleClass="title-txt" text="Auftrag 1" />
                      </children>
                   </HBox>
                   <TextArea fx:id="contract_description" editable="false" prefHeight="189.0" prefWidth="226.0" styleClass="normal-txt" text="Das ist eine Beschreibung für den Auftrag 1. Hier wird in maximal 3 Sätzen beschrieben was in diesem Auftrag zu tun ist. Dies ist rein um das Spielerlebnis aufzuwerten, die Beschreibung hat keine Auswirkung auf das Spiel." wrapText="true" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="contract_lines" alignment="CENTER" prefHeight="36.0" prefWidth="106.0" styleClass="normal-txt" text="459/1500 LoC" />
-                        <Label fx:id="contract_payout" alignment="CENTER" prefHeight="36.0" prefWidth="118.0" styleClass="normal-txt" text="Preis: 850 IMC" />
+                        <Label fx:id="contract_lines" alignment="CENTER" prefHeight="36.0" prefWidth="79.0" styleClass="normal-txt" text="459/1500 LoC" />
+                        <Label fx:id="contract_payout" alignment="CENTER" prefHeight="36.0" prefWidth="97.0" styleClass="normal-txt" text="Preis: 850 IMC" />
+                        <Button fx:id="contract_finish" mnemonicParsing="false" onAction="#completeContract" prefHeight="36.0" prefWidth="48.0" styleClass="finish-btn" stylesheets="@stylesheet.css" text="Finish" />
                      </children>
                   </HBox>
                </children>
