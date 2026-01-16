@@ -187,11 +187,11 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="107.0" prefWidth="186.0">
                                  <children>
-                                    <Label fx:id="dev_1_name" text="Dev1" />
-                                    <Label fx:id="dev_1_level" text="Dev1_Level" />
-                                    <Label fx:id="dev_1_salary" text="Dev1_Salary" />
+                                    <Label fx:id="dev_1_name" styleClass="developer-txt" text="Dev1" />
+                                    <Label fx:id="dev_1_level" styleClass="developer-txt" text="Dev1_Level" />
+                                    <Label fx:id="dev_1_salary" styleClass="developer-txt" text="Dev1_Salary" />
                                     <Button mnemonicParsing="false" onAction="#fireDev2" prefHeight="26.0" prefWidth="40.0" styleClass="finish-btn" text="Fire" />
                                  </children>
                               </VBox>
@@ -273,11 +273,11 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="106.0" prefWidth="194.0">
                                  <children>
-                                    <Label fx:id="dev_2_name" text="Dev2" />
-                                    <Label fx:id="dev_2_level" text="Dev2_Level" />
-                                    <Label fx:id="dev_2_salary" text="Dev2_Salary" />
+                                    <Label fx:id="dev_2_name" styleClass="developer-txt" text="Dev2" />
+                                    <Label fx:id="dev_2_level" styleClass="developer-txt" text="Dev2_Level" />
+                                    <Label fx:id="dev_2_salary" prefHeight="18.0" prefWidth="114.0" styleClass="developer-txt" text="Dev2_Salary" />
                                     <Button mnemonicParsing="false" onAction="#fireDev3" prefHeight="26.0" prefWidth="45.0" styleClass="finish-btn" text="Fire" />
                                  </children>
                               </VBox>
@@ -359,11 +359,11 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <VBox prefHeight="106.0" prefWidth="186.0">
                                  <children>
-                                    <Label fx:id="dev_3_name" text="Dev3" />
-                                    <Label fx:id="dev_3_level" text="Dev3_Level" />
-                                    <Label fx:id="dev_3_salary" text="Dev3_Salary" />
+                                    <Label fx:id="dev_3_name" styleClass="developer-txt" text="Dev3" />
+                                    <Label fx:id="dev_3_level" styleClass="developer-txt" text="Dev3_Level" />
+                                    <Label fx:id="dev_3_salary" styleClass="developer-txt" text="Dev3_Salary" />
                                     <Button mnemonicParsing="false" onAction="#fireDev4" prefHeight="26.0" prefWidth="45.0" styleClass="finish-btn" text="Fire" />
                                  </children>
                               </VBox>
@@ -396,12 +396,12 @@
                         <Label alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="330.0" styleClass="developer-txt" text="Hire a new Developer: " />
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#hireNewDev" prefHeight="27.0" prefWidth="51.0" styleClass="finish-btn" text="Hire" textAlignment="CENTER">
                            <HBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
-                  <Line endX="671.2929077148438" endY="0.800000786781311" startX="-100.0" stroke="#373f51" GridPane.rowIndex="1" />
+                  <Line endX="670.0" startX="-100.0" stroke="#373f51" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
             </children>
@@ -412,11 +412,11 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="130.66665649414062" minHeight="0.0" prefHeight="74.20000305175782" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="130.66665649414062" minHeight="0.0" prefHeight="10.400012207031253" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="399.9999694824218" minHeight="10.0" prefHeight="231.19998779296873" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="399.9999694824218" minHeight="0.0" prefHeight="13.399966430664051" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="302.9999877929688" minHeight="10.0" prefHeight="234.99998779296874" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="130.66665649414062" minHeight="0.0" prefHeight="87.2" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="130.66665649414062" minHeight="0.0" prefHeight="9.600000000000009" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="399.9999694824218" minHeight="10.0" prefHeight="220.80001220703127" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="399.9999694824218" minHeight="0.0" prefHeight="20.600006103515625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="302.9999877929688" minHeight="10.0" prefHeight="225.59999389648436" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <HBox prefHeight="74.0" prefWidth="226.0">
@@ -425,10 +425,13 @@
                             <image>
                                 <Image url="@imgs/logo.png" />
                             </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
                         </ImageView>
                         <TextField fx:id="CompName" prefHeight="68.0" prefWidth="156.0" styleClass="title-txt" text="Idle Macrop">
                             <HBox.margin>
-                                <Insets />
+                                <Insets top="5.0" />
                             </HBox.margin>
                      <font>
                         <Font size="22.0" />
@@ -487,7 +490,10 @@
                         <Insets left="5.0" />
                      </padding>
                   </HBox>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="169.0" prefWidth="224.0" styleClass="small-title" text="Macrosoft © 2025-2026 " />
+                  <Label alignment="BOTTOM_CENTER" prefHeight="22.0" prefWidth="224.0" styleClass="small-title" text="Macrosoft © 2025-2026 ">
+                     <VBox.margin>
+                        <Insets top="130.0" />
+                     </VBox.margin></Label>
                </children>
             </VBox>
             </children>
