@@ -59,7 +59,7 @@ public class Contract {
         return contractLinesProperty;
     }
     public StringProperty getContractPayoutProperty(){
-        return new SimpleStringProperty("Payout: " +  this.payout + " IMC");
+        return new SimpleStringProperty(this.payout + " IMC");
     }
 
     //Observable properties
