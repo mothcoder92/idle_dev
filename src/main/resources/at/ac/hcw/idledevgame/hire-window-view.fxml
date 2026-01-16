@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="300.0" maxWidth="650.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="650.0" styleClass="hbox" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.idledevgame.hireController">
+<VBox maxHeight="300.0" maxWidth="650.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="650.0" styleClass="hbox" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.hcw.idledevgame.hireController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
