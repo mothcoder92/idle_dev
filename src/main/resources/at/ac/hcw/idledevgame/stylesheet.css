@@ -50,3 +50,13 @@
     -fx-font-size: 14px;
 }
 
+.small-title {
+    -fx-background-color: inherit;
+    -fx-text-fill: #373f51;
+    -fx-font-family: 'audiowide';
+    -fx-font-size: 14px;
+}
+
+.progress-color {
+    -fx-accent: #373f51;
+}
