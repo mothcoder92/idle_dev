@@ -189,6 +189,7 @@ public class Game {
     public void advanceHour() {
 
         //per hour game object things
+        //todo: pay devs
 
         if (hour >= WORK_HOURS_PER_DAY) {
             hour = 0;
