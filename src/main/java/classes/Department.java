@@ -27,19 +27,27 @@ public class Department {
 
     //implement here
 
-    public boolean addDeveloper(Developer developer){
+    public boolean addDeveloper(Developer developer) {
         //todo: implement
         return false;
     }
 
-    public boolean addWorkplace(){
+    public boolean addWorkplace() {
         //todo: implement
         return false;
     }
 
     //Getters and Setters
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-    public int getID() {return ID;}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getID() {
+        return ID;
+    }
 
 }

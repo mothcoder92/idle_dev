@@ -2,6 +2,7 @@ package at.ac.hcw.idledevgame;
 
 import classes.Game;
 import javafx.application.Application;
+
 import java.util.Scanner;
 
 public class Launcher {
@@ -29,16 +30,16 @@ public class Launcher {
                 //Launch Game UI
                 Application.launch(GameApplication.class, args);
                 break;
-                case 2:
-                    //Console game
-                    Game ConsolePlaythrough = new Game();
-                    ConsolePlaythrough.consoleGame();
-                    break;
-                    case 3:
-                        //auto-run game with log
-                        Game AutoRunGame = new Game();
-                        AutoRunGame.gameAutoRun();
-                        AutoRunGame.printGameLog();
+            case 2:
+                //Console game
+                Game ConsolePlaythrough = new Game();
+                ConsolePlaythrough.consoleGame();
+                break;
+            case 3:
+                //auto-run game with log
+                Game AutoRunGame = new Game();
+                AutoRunGame.gameAutoRun();
+                AutoRunGame.printGameLog();
             default:
                 System.out.println("Wrong input!");
                 main(args);

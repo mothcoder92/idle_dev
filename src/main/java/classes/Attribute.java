@@ -2,6 +2,7 @@ package classes;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.Random;
 
 /**
@@ -17,6 +18,7 @@ public class Attribute {
 
     /**
      * Default Constructor
+     *
      * @param name Name of the attribute
      * @param rank Initial rank
      */
@@ -30,24 +32,36 @@ public class Attribute {
      * Call to upgrade attribute by one rank
      */
     public void upgradeAttribute() {
-        this.rank.set(rank.get()+1);
+        this.rank.set(rank.get() + 1);
         this.nextUpgradeCost.set(getUpgradeCost());
     }
 
     /**
      * Get upgrade cost from current rank with
      * slight randomness added.
+     *
      * @return upgrade cost as int.
      */
-    private int getUpgradeCost(){
+    private int getUpgradeCost() {
         Random rand = new Random();
-        return (int)(rank.get() * 100 * rand.nextFloat(1,2));
+        return (int) (rank.get() * 100 * rand.nextFloat(1, 2));
     }
 
     //Getters & Setters
-    public String getName() {return name;}
-    public IntegerProperty getRank() {return this.rank;}
-    public void setRank(int rank) {this.rank.set(rank);}
-    public IntegerProperty getNextUpgradeCost() {return this.nextUpgradeCost;}
+    public String getName() {
+        return name;
+    }
+
+    public IntegerProperty getRank() {
+        return this.rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank.set(rank);
+    }
+
+    public IntegerProperty getNextUpgradeCost() {
+        return this.nextUpgradeCost;
+    }
 
 }

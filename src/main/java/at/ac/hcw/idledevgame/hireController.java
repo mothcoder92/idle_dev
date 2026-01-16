@@ -22,22 +22,34 @@ public class hireController {
     }
 
     //Potential Hire 0
-    @FXML protected Label hire_0_name;
-    @FXML protected Label hire_0_cost;
-    @FXML protected Label hire_0_speed;
-    @FXML protected Label hire_0_quality;
+    @FXML
+    protected Label hire_0_name;
+    @FXML
+    protected Label hire_0_cost;
+    @FXML
+    protected Label hire_0_speed;
+    @FXML
+    protected Label hire_0_quality;
 
     //Potential Hire 1
-    @FXML protected Label hire_1_name;
-    @FXML protected Label hire_1_cost;
-    @FXML protected Label hire_1_speed;
-    @FXML protected Label hire_1_quality;
+    @FXML
+    protected Label hire_1_name;
+    @FXML
+    protected Label hire_1_cost;
+    @FXML
+    protected Label hire_1_speed;
+    @FXML
+    protected Label hire_1_quality;
 
     //Potential Hire 2
-    @FXML protected Label hire_2_name;
-    @FXML protected Label hire_2_cost;
-    @FXML protected Label hire_2_speed;
-    @FXML protected Label hire_2_quality;
+    @FXML
+    protected Label hire_2_name;
+    @FXML
+    protected Label hire_2_cost;
+    @FXML
+    protected Label hire_2_speed;
+    @FXML
+    protected Label hire_2_quality;
 
     //Grouping
     private List<Label> nameLabels;
@@ -46,16 +58,20 @@ public class hireController {
     private List<Label> qualityLabels;
 
     //Control Elements
-    @FXML protected Button hire_0_btn;
-    @FXML protected Button hire_1_btn;
-    @FXML protected Button hire_2_btn;
+    @FXML
+    protected Button hire_0_btn;
+    @FXML
+    protected Button hire_1_btn;
+    @FXML
+    protected Button hire_2_btn;
 
     //On choosing dev, return to main window
-    @FXML protected void hire_0_btn_click(){
+    @FXML
+    protected void hire_0_btn_click() {
         game.developers.get().add(game.potentialDevelopers.get(0));
 
         //Runnable to callback to gameController
-        if(onHireFinished!=null){
+        if (onHireFinished != null) {
             onHireFinished.run();
         }
 
@@ -66,37 +82,40 @@ public class hireController {
      * Add newly hired Dev to the gameObject and
      * fire callback to notify gameController
      */
-    @FXML protected void hire_1_btn_click(){
+    @FXML
+    protected void hire_1_btn_click() {
         game.developers.get().add(game.potentialDevelopers.get(1));
 
         //Runnable to callback to gameController
-        if(onHireFinished!=null){
+        if (onHireFinished != null) {
             onHireFinished.run();
         }
 
         ((Stage) hire_1_btn.getScene().getWindow()).close();
     }
-    @FXML protected void hire_2_btn_click(){
+
+    @FXML
+    protected void hire_2_btn_click() {
         game.developers.get().add(game.potentialDevelopers.get(2));
 
         //Runnable to callback to gameController
-        if(onHireFinished!=null){
+        if (onHireFinished != null) {
             onHireFinished.run();
         }
 
         ((Stage) hire_2_btn.getScene().getWindow()).close();
     }
 
-    public void setOnHireFinished(Runnable callback){
+    public void setOnHireFinished(Runnable callback) {
         this.onHireFinished = callback;
     }
 
     @FXML
-    protected void initialize(){
+    protected void initialize() {
         //no game reference here, as it is still null
     }
 
-    public void initUI(){
+    public void initUI() {
         //Group in Lists
         nameLabels = List.of(hire_0_name, hire_1_name, hire_2_name);
         costLabels = List.of(hire_0_cost, hire_1_cost, hire_2_cost);
@@ -109,7 +128,7 @@ public class hireController {
         bindDevelopers();
     }
 
-    private void bindDevelopers(){
+    private void bindDevelopers() {
         int count = Math.min(game.potentialDevelopers.size(), nameLabels.size());
 
         for (int i = 0; i < count; i++) {
