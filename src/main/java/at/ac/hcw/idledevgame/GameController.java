@@ -50,6 +50,8 @@ public class GameController {
     @FXML public Label dev_0_salary;
     @FXML public Button dev_0_upgrade_quality;
     @FXML public Button dev_0_upgrade_codeSpeed;
+    @FXML public Label dev_0_cost_codeSpeed;
+    @FXML public Label dev_0_cost_quality;
     @FXML private Label levelCodingSpeed_0;
     @FXML private Label levelQualityOfCode_0;
     @FXML public ProgressBar dev_0_progress;
@@ -63,6 +65,8 @@ public class GameController {
     @FXML public Label dev_1_salary;
     @FXML public Button dev_1_upgrade_quality;
     @FXML public Button dev_1_upgrade_codeSpeed;
+    @FXML public Label dev_1_cost_codeSpeed;
+    @FXML public Label dev_1_cost_quality;
     @FXML private Label levelCodingSpeed_1;
     @FXML private Label levelQualityOfCode_1;
     @FXML public ProgressBar dev_1_progress;
@@ -76,6 +80,8 @@ public class GameController {
     @FXML public Label dev_2_salary;
     @FXML public Button dev_2_upgrade_quality;
     @FXML public Button dev_2_upgrade_codeSpeed;
+    @FXML public Label dev_2_cost_codeSpeed;
+    @FXML public Label dev_2_cost_quality;
     @FXML private Label levelCodingSpeed_2;
     @FXML private Label levelQualityOfCode_2;
     @FXML public ProgressBar dev_2_progress;
@@ -89,6 +95,8 @@ public class GameController {
     @FXML public Label dev_3_salary;
     @FXML public Button dev_3_upgrade_quality;
     @FXML public Button dev_3_upgrade_codeSpeed;
+    @FXML public Label dev_3_cost_codeSpeed;
+    @FXML public Label dev_3_cost_quality;
     @FXML private Label levelCodingSpeed_3;
     @FXML private Label levelQualityOfCode_3;
     @FXML public ProgressBar dev_3_progress;
