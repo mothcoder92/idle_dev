@@ -410,15 +410,11 @@ public class GameController {
         Tooltip.install(dev_0_upgrade_quality, dev_0_upgradeQualityOfCodeTooltip);
 
         dev_0_upgrade_codeSpeed.setOnMouseEntered(e -> {
-            dev_0_upgradeCodingSpeedTooltip.setText(
-                    "Upgrade cost: " + game.developers.get(0).getcodingSpeed().getNextUpgradeCost()
-            );
+            dev_0_upgradeCodingSpeedTooltip.setText("Upgrade cost: " + game.developers.get(0).getcodingSpeed().getNextUpgradeCost());
         });
 
         dev_0_upgrade_quality.setOnMouseExited(e -> {
-            dev_0_upgradeCodingSpeedTooltip.setText(
-                    "Upgrade cost: " + game.developers.get(0).getsuccessRate().getNextUpgradeCost()
-            );
+            dev_0_upgradeCodingSpeedTooltip.setText("Upgrade cost: " + game.developers.get(0).getsuccessRate().getNextUpgradeCost());
         });
 
         bindDeveloperProgress();
@@ -449,10 +445,8 @@ public class GameController {
         //System.out.println("hire_3_name = " + dev_3_name);
 
         //Initialize Lists
-        upgradeCodingSpeed = List.of(levelCodingSpeed_0, levelCodingSpeed_1,
-                levelCodingSpeed_2, levelCodingSpeed_3);
-        upgradeQualityOfCode = List.of(levelQualityOfCode_0, levelQualityOfCode_1,
-                levelQualityOfCode_2, levelQualityOfCode_3);
+        upgradeCodingSpeed = List.of(levelCodingSpeed_0, levelCodingSpeed_1, levelCodingSpeed_2, levelCodingSpeed_3);
+        upgradeQualityOfCode = List.of(levelQualityOfCode_0, levelQualityOfCode_1, levelQualityOfCode_2, levelQualityOfCode_3);
         developerNames = List.of(dev_0_name, dev_1_name, dev_2_name, dev_3_name);
         developerTitles = List.of(dev_0_level, dev_1_level, dev_2_level, dev_3_level);
         developerSalaries = List.of(dev_0_salary, dev_1_salary, dev_2_salary, dev_3_salary);
@@ -484,9 +478,7 @@ public class GameController {
         dev4.setVisible(false);
 
         //Initialize timeline
-        timeline = new Timeline(
-                new KeyFrame(Duration.seconds(0.1), e -> game.advanceMinute())
-        );
+        timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> game.advanceMinute()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
@@ -526,20 +518,15 @@ public class GameController {
         final Color originalColor = (Color) label.getTextFill();
         final Color flashColor = Color.RED;
 
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, e -> {
-                    label.setTextFill(flashColor);
-                }),
-                new KeyFrame(Duration.seconds(0.25), e -> {
-                    label.setTextFill(originalColor);
-                }),
-                new KeyFrame(Duration.seconds(0.5), e -> {
-                    label.setTextFill(flashColor);
-                }),
-                new KeyFrame(Duration.seconds(0.75), e -> {
-                    label.setTextFill(originalColor);
-                })
-        );
+        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            label.setTextFill(flashColor);
+        }), new KeyFrame(Duration.seconds(0.25), e -> {
+            label.setTextFill(originalColor);
+        }), new KeyFrame(Duration.seconds(0.5), e -> {
+            label.setTextFill(flashColor);
+        }), new KeyFrame(Duration.seconds(0.75), e -> {
+            label.setTextFill(originalColor);
+        }));
         timeline.setCycleCount(1);
         timeline.play();
     }

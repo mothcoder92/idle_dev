@@ -39,14 +39,8 @@ public class Game {
 
     //region development variables
     public List<Exception> errors = new ArrayList<>(); //for debugging
-    public ListProperty<Developer> developers =
-            new SimpleListProperty<Developer>(
-                    FXCollections.observableArrayList()
-            );
-    public ListProperty<Developer> potentialDevelopers =
-            new SimpleListProperty<Developer>(
-                    FXCollections.observableArrayList()
-            );
+    public ListProperty<Developer> developers = new SimpleListProperty<Developer>(FXCollections.observableArrayList());
+    public ListProperty<Developer> potentialDevelopers = new SimpleListProperty<Developer>(FXCollections.observableArrayList());
     //endregion
 
     /***
